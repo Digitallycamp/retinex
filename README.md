@@ -571,3 +571,5 @@ Give insights.
 - Redux Toolkit
 - Firebase (Auth + Firestore)
 - Tailwind CSS
+
+- see story: https://gist.github.com/Digitallycamp/57f97fcecd3de9b9805e8215b50431fd

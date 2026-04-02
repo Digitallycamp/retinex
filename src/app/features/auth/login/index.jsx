@@ -1,6 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
+import { toast } from 'react-toastify';
+import { getFriendlyMessage } from '../../../../lib/firebase-errors';
+import { useAuth } from '../../../core/store/AuthContext';
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -22,6 +27,35 @@ const itemVariants = {
 };
 
 function GetStarted() {
+	const { user, loading, authError, signInUserWithEmailAndPassword } =
+		useAuth();
+	const navigate = useNavigate();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+
+	const handleSignIn = async (data) => {
+		try {
+			const result = await signInUserWithEmailAndPassword(
+				data.email,
+				data.password
+			);
+
+			if (result.user.emailVerified) {
+				toast.success('Login successful');
+				navigate('/dashboard');
+			} else {
+				toast.info('Verify your email before you can login');
+			}
+		} catch (error) {
+			console.log(error);
+			const message = getFriendlyMessage(error.code);
+			toast.error(message);
+		}
+	};
+
 	return (
 		<motion.div
 			variants={containerVariants}
@@ -35,9 +69,13 @@ function GetStarted() {
 					Sign in to Retinex
 				</motion.h1>
 
-				<motion.form className='flex flex-col gap-4'>
+				<motion.form
+					onSubmit={handleSubmit(handleSignIn)}
+					className='flex flex-col gap-4'
+				>
 					<motion.div>
 						<motion.input
+							{...register('email')}
 							whileFocus={{ scale: 1.02 }}
 							type='email'
 							placeholder='Enter email'
@@ -47,6 +85,7 @@ function GetStarted() {
 
 					<motion.div>
 						<motion.input
+							{...register('password')}
 							whileFocus={{ scale: 1.02 }}
 							type='password'
 							placeholder='Enter password'
@@ -65,6 +104,7 @@ function GetStarted() {
 
 					<motion.div>
 						<motion.button
+							disabled={loading}
 							whileHover={{ scale: 1.03 }}
 							whileTap={{ scale: 0.97 }}
 							type='submit'

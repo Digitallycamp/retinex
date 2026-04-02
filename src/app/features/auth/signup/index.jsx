@@ -1,6 +1,12 @@
 import React, { useContext } from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../../../core/store/AuthContext';
+import { toast } from 'react-toastify';
+import { getFriendlyMessage } from '../../../../lib/firebase-errors';
+import { auth } from '../../../core/firebase/firebase';
+import { useSendEmailVerification } from 'react-firebase-hooks/auth';
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -22,6 +28,48 @@ const itemVariants = {
 };
 
 function CreateAccount() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	const navigate = useNavigate();
+	const { user, handleSignOut, loading, signUpWithEmailAndPassword } =
+		useAuth();
+	const [sendEmailVerification, sending, error] =
+		useSendEmailVerification(auth);
+
+	if (error) {
+		toast.info(error.message);
+	}
+
+	const handleSignup = async (data) => {
+		console.log(data);
+		try {
+			await signUpWithEmailAndPassword(data.email, data.password);
+			const actionCodeSettings = {
+				// This must be a whitelisted domain in your Firebase Console
+				url: 'http://localhost:5174/get-started',
+				handleCodeInApp: true,
+			};
+			const emailSent = await sendEmailVerification(actionCodeSettings);
+
+			if (emailSent) {
+				toast.info(
+					'Account created successfully, A veriifcation email has been sent to you'
+				);
+				await handleSignOut();
+				navigate('/get-started');
+			}
+		} catch (error) {
+			const message = getFriendlyMessage(error.code);
+			toast.error(message);
+		}
+	};
+
+	// if (loading) {
+	// 	return <p>LOADING....</p>;
+	// }
 	return (
 		<motion.div
 			variants={containerVariants}
@@ -35,14 +83,19 @@ function CreateAccount() {
 					Create account
 				</motion.h1>
 
-				<motion.form className='flex flex-col gap-4'>
+				<motion.form
+					className='flex flex-col gap-4'
+					onSubmit={handleSubmit(handleSignup)}
+				>
 					<motion.div>
 						<motion.input
 							whileFocus={{ scale: 1.02 }}
 							type='email'
 							placeholder='Enter email'
 							className='w-full h-10 rounded border border-[#e5e5e5] px-4 outline-none focus:border-blue-500 transition'
+							{...register('email')}
 						/>
+						{/* {errors && <p>{errors.email.message}</p>} */}
 					</motion.div>
 
 					<motion.div>
@@ -51,16 +104,20 @@ function CreateAccount() {
 							type='password'
 							placeholder='Enter password'
 							className='w-full h-10 rounded border border-[#e5e5e5] px-4 outline-none focus:border-blue-500 transition'
+							{...register('password')}
 						/>
+						{/* {errors && <p>{errors.password.message}</p>} */}
 					</motion.div>
 
 					<motion.div>
 						<motion.button
+							// disabled={!loading}
 							whileHover={{ scale: 1.03 }}
 							whileTap={{ scale: 0.97 }}
 							type='submit'
 							className='w-full h-10 rounded bg-[#007A5A] text-white px-4 cursor-pointer'
 						>
+							{/* {loading ? 'Creating account...' : 'Create Account'} */}
 							Create Account
 						</motion.button>
 					</motion.div>
@@ -74,6 +131,7 @@ function CreateAccount() {
 
 				<motion.div className='mt-6'>
 					<motion.button
+						disabled={!loading}
 						whileHover={{ scale: 1.02 }}
 						whileTap={{ scale: 0.97 }}
 						className='flex items-center justify-center gap-4 cursor-pointer border border-zinc-200 w-full h-10 rounded text-center hover:bg-zinc-50 transition'

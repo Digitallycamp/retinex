@@ -10,6 +10,9 @@ import Dashboard from './app/features/users/dashboard';
 import MainLayout from './app/features/main/home/components/MainLayout';
 import DashboardOverview from './app/features/users/dashboard/components/Dashboardoverview';
 import { AuthProvider } from './app/core/store/AuthContext';
+import AuthGuard from './app/routes/guard/AuthGuard';
+import ProtectedRouted from './app/routes/ProtectedRouted';
+import UnAuthorized from './app/features/users/unauthorized';
 
 function App() {
 	return (
@@ -19,15 +22,36 @@ function App() {
 					<Route element={<MainLayout />}>
 						<Route path='/' element={<Home />} />
 						<Route path='/about-us' element={<div>About us</div>} />
-						<Route path='/get-started' element={<GetStarted />} />
-						<Route path='/create-account' element={<CreateAccount />} />
+						<Route
+							path='/get-started'
+							element={
+								<AuthGuard>
+									<GetStarted />
+								</AuthGuard>
+							}
+						/>
+						<Route
+							path='/create-account'
+							element={
+								<AuthGuard>
+									<CreateAccount />
+								</AuthGuard>
+							}
+						/>
 						<Route path='/forgot-password' element={<ForgotPassword />} />
 						<Route path='/reset-password' element={<ResetPassword />} />
 					</Route>
 
-					<Route element={<Dashboard />}>
+					<Route
+						element={
+							<ProtectedRouted>
+								<Dashboard />
+							</ProtectedRouted>
+						}
+					>
 						<Route path='/dashboard' element={<DashboardOverview />} />
 						<Route path='/inventory' element={<div>Inventory</div>} />
+						<Route path='/unauthorized' element={<UnAuthorized />} />
 					</Route>
 				</Routes>
 			</AuthProvider>

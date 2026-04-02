@@ -19,6 +19,7 @@ import {
 	X,
 } from 'lucide-react';
 import { uiColor } from '../../../core/theme';
+import { useAuth } from '../../../core/store/AuthContext';
 
 // ── Nav structure mirrors the screenshot exactly ──
 const navSections = [
@@ -149,6 +150,11 @@ function SidebarContent({ onClose }) {
 export default function Dashboard() {
 	const [mobileOpen, setMobileOpen] = useState(false);
 
+	const { user, loading } = useAuth();
+
+	// if (loading) {
+	// 	return <p>Loaing.....</p>;
+	// }
 	return (
 		<div
 			className='flex w-full min-h-screen '
@@ -229,6 +235,7 @@ export default function Dashboard() {
 				{/* Page content */}
 				<main className='flex-1 p-3 md:p-4 overflow-auto'>
 					<section className='bg-white rounded-t-xl shadow-sm min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-2rem)] p-4'>
+						{user?.email}
 						<Outlet />
 					</section>
 				</main>

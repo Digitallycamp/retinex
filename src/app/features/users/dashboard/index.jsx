@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
 	Home,
 	Wand2,
@@ -17,6 +17,7 @@ import {
 	Zap,
 	Menu,
 	X,
+	LogOutIcon,
 } from 'lucide-react';
 import { uiColor } from '../../../core/theme';
 import { useAuth } from '../../../core/store/AuthContext';
@@ -33,9 +34,9 @@ const navSections = [
 		],
 	},
 	{
-		label: 'Projects',
+		label: 'Inventory',
 		items: [
-			{ label: 'Create new', icon: PlusCircle, link: 'create' },
+			{ label: 'Create new', icon: PlusCircle, link: 'add-inventory' },
 			{ label: 'Black Friday', icon: Tag, link: 'black-friday' },
 			{ label: 'ClipMagic', icon: Scissors, link: 'clipmagic' },
 		],
@@ -56,6 +57,19 @@ const navSections = [
 ];
 
 function SidebarContent({ onClose }) {
+	const { handleSignOut, loading } = useAuth();
+	const [openAccountPanel, setOpenAccountPanel] = useState(false);
+	const navigate = useNavigate();
+	const handleOpenAccountPanel = () => setOpenAccountPanel(!openAccountPanel);
+
+	const handleAuthSignOut = async () => {
+		await handleSignOut();
+		navigate('/get-started');
+	};
+
+	if (loading) {
+		return <p>Loading...</p>;
+	}
 	return (
 		<div
 			className='flex flex-col h-full'
@@ -132,8 +146,22 @@ function SidebarContent({ onClose }) {
 			</nav>
 
 			{/* My Account footer */}
-			<div className='px-3 py-3 border-t border-white/8'>
-				<button className='w-full flex items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-white/10 transition-colors'>
+			<div className='px-3 py-3 border-t border-white/8 relative'>
+				{openAccountPanel && (
+					<div className='bg-white rounded-sm shadow-sm p-6 absolute -top-16 w-[88%]'>
+						<button
+							className='flex items-center space-x-2 cursor-pointer'
+							onClick={handleAuthSignOut}
+						>
+							<LogOutIcon /> Logout
+						</button>
+					</div>
+				)}
+
+				<button
+					onClick={handleOpenAccountPanel}
+					className='w-full flex items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-white/10 transition-colors'
+				>
 					<div className='w-7 h-7 rounded-full bg-purple-600/30 flex items-center justify-center shrink-0'>
 						<UserCircle size={15} className='text-purple-300' />
 					</div>
@@ -235,7 +263,6 @@ export default function Dashboard() {
 				{/* Page content */}
 				<main className='flex-1 p-3 md:p-4 overflow-auto'>
 					<section className='bg-white rounded-t-xl shadow-sm min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-2rem)] p-4'>
-						{user?.email}
 						<Outlet />
 					</section>
 				</main>

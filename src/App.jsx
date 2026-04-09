@@ -13,6 +13,8 @@ import { AuthProvider } from './app/core/store/AuthContext';
 import AuthGuard from './app/routes/guard/AuthGuard';
 import ProtectedRouted from './app/routes/ProtectedRouted';
 import UnAuthorized from './app/features/users/unauthorized';
+import VerifyEmailPage from './app/features/auth/verify-email';
+import AddInventoryPage from './app/features/users/add_inventory';
 
 function App() {
 	return (
@@ -38,10 +40,18 @@ function App() {
 								</AuthGuard>
 							}
 						/>
+
 						<Route path='/forgot-password' element={<ForgotPassword />} />
 						<Route path='/reset-password' element={<ResetPassword />} />
 					</Route>
-
+					<Route
+						path='/verify-email'
+						element={
+							<AuthGuard>
+								<VerifyEmailPage />
+							</AuthGuard>
+						}
+					/>
 					<Route
 						element={
 							<ProtectedRouted>
@@ -50,6 +60,7 @@ function App() {
 						}
 					>
 						<Route path='/dashboard' element={<DashboardOverview />} />
+						<Route path='/add-inventory' element={<AddInventoryPage />} />
 						<Route path='/inventory' element={<div>Inventory</div>} />
 						<Route path='/unauthorized' element={<UnAuthorized />} />
 					</Route>

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 const role = ['admin', 'manager'];
 function RoleGuard({ allowedRole, children }) {
 	const { user, loading } = useAuth();
-
+	// fix order
 	if (!user) {
 		return <Navigate to='/get-started' replace />;
 	}

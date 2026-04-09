@@ -42,7 +42,7 @@ function CreateAccount() {
 	if (error) {
 		toast.info(error.message);
 	}
-
+	// https://sass-98cbb.firebaseapp.com/__/auth/action
 	const handleSignup = async (data) => {
 		console.log(data);
 		try {

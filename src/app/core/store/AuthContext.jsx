@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 		registerLoading,
 		registerError,
 	] = useCreateUserWithEmailAndPassword(auth);
-	const [signInWithEmailAndPassword, authLoading, authError] =
+	const [signInWithEmailAndPassword, authUser, authLoading, authError] =
 		useSignInWithEmailAndPassword(auth);
 
 	const handleSignOut = async () => {
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
 			value={{
 				user,
 				loading:
-					globalLoading || authLoading || registerLoading | signOutLoading,
+					globalLoading || authLoading || registerLoading || signOutLoading,
 				error: registerError,
 				authError,
 

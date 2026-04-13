@@ -2,22 +2,19 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
-	Home,
-	Wand2,
-	Trophy,
 	PlusCircle,
-	Tag,
-	Scissors,
-	ScanFace,
-	BookOpen,
-	Users,
-	Handshake,
 	UserCircle,
 	ChevronDown,
 	Zap,
 	Menu,
 	X,
 	LogOutIcon,
+	LayoutDashboard,
+	Box,
+	ShoppingCart,
+	Van,
+	ChartLine,
+	Settings,
 } from 'lucide-react';
 import { uiColor } from '../../../core/theme';
 import { useAuth } from '../../../core/store/AuthContext';
@@ -25,33 +22,29 @@ import { useAuth } from '../../../core/store/AuthContext';
 // ── Nav structure mirrors the screenshot exactly ──
 const navSections = [
 	{
-		items: [{ label: 'Home', icon: Home, link: 'dashboard' }],
+		items: [{ label: 'Dashboard', icon: LayoutDashboard, link: 'dashboard' }],
 	},
 	{
 		items: [
-			{ label: 'Magic Thumbnails', icon: Wand2, link: 'inventory' },
-			{ label: 'Winning Templates', icon: Trophy, link: 'templates' },
+			{ label: 'Inventory', icon: Box, link: 'inventory' },
+			{ label: 'Sales Orders', icon: ShoppingCart, link: 'templates' },
+			{ label: 'Suppliers', icon: Van, link: 'templates' },
+			{ label: 'Reports', icon: ChartLine, link: 'templates' },
+
 		],
 	},
 	{
-		label: 'Inventory',
+		label: 'Quick Actions',
 		items: [
-			{ label: 'Create new', icon: PlusCircle, link: 'add-inventory' },
-			{ label: 'Black Friday', icon: Tag, link: 'black-friday' },
-			{ label: 'ClipMagic', icon: Scissors, link: 'clipmagic' },
+			{ label: 'Create Order', icon: ShoppingCart, link: 'create-order' },
+			{ label: 'Add Product', icon: PlusCircle, link: 'add-inventory' },
+			{ label: 'Add Supplier', icon: Van, link: 'clipmagic' },
 		],
 	},
 	{
+		label: 'SUPPORT',
 		items: [
-			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'face-cloning' },
-		],
-	},
-	{
-		label: 'TRAINING',
-		items: [
-			{ label: 'Tutorials', icon: BookOpen, link: 'tutorials' },
-			{ label: 'Facebook Group', icon: Users, link: 'facebook-group' },
-			{ label: 'Affiliate Partners', icon: Handshake, link: 'affiliate' },
+			{ label: 'Settings', icon: Settings, link: 'tutorials' },
 		],
 	},
 ];

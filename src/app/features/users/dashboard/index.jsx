@@ -27,9 +27,9 @@ const navSections = [
 	{
 		items: [
 			{ label: 'Inventory', icon: Box, link: 'inventory' },
-			{ label: 'Sales Orders', icon: ShoppingCart, link: 'templates' },
-			{ label: 'Suppliers', icon: Van, link: 'templates' },
-			{ label: 'Reports', icon: ChartLine, link: 'templates' },
+			{ label: 'Sales Orders', icon: ShoppingCart, link: 'sales-orders' },
+			{ label: 'Suppliers', icon: Van, link: 'suppliers' },
+			{ label: 'Reports', icon: ChartLine, link: 'reports' },
 
 		],
 	},
@@ -254,7 +254,7 @@ export default function Dashboard() {
 				</header>
 
 				{/* Page content */}
-				<main className='flex-1 p-3 md:p-4 overflow-auto'>
+				<main className='flex-1 p-3 md:p-4 overflow-auto '>
 					<section className='bg-white rounded-t-xl shadow-sm min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-2rem)] p-4'>
 						<Outlet />
 					</section>

@@ -15,17 +15,27 @@ import ProtectedRouted from './app/routes/ProtectedRouted';
 import UnAuthorized from './app/features/users/unauthorized';
 import VerifyEmailPage from './app/features/auth/verify-email';
 import AddInventoryPage from './app/features/users/add_inventory';
+import Inventory from './app/features/users/inventory';
+// import FullSupplierForm from './app/features/users/add_supplier';
+// import AddProductForm from './app/features/users/add_inventory/index2';
+import { ProductProvider } from './app/features/users/inventory/ProductContext';
+import ProductForm from './app/features/users/add_inventory/createproduct';
+import Settings from './app/features/users/settings_page';
+import AddSupplier from './app/features/users/add_inventory/index2';
+// import AddSupplierForm from './app/features/users/add_supplier';
+
 
 function App() {
 	return (
 		<>
 			<AuthProvider>
+				<ProductProvider>
 				<Routes>
 					<Route element={<MainLayout />}>
-						<Route path='/' element={<Home />} />
+						<Route path='/chill' element={<Home />} />
 						<Route path='/about-us' element={<div>About us</div>} />
 						<Route
-							path='/get-started'
+							path='/'
 							element={
 								<AuthGuard>
 									<GetStarted />
@@ -52,6 +62,7 @@ function App() {
 							</AuthGuard>
 						}
 					/>
+					
 					<Route
 						element={
 							<ProtectedRouted>
@@ -61,10 +72,15 @@ function App() {
 					>
 						<Route path='/dashboard' element={<DashboardOverview />} />
 						<Route path='/add-inventory' element={<AddInventoryPage />} />
-						<Route path='/inventory' element={<div>Inventory</div>} />
+						<Route path='/create-product' element={< ProductForm />} />
+						<Route path='/inventory' element={<Inventory />} />
+						<Route path='/settings' element={<Settings />} />
+						{/* <Route path='/add-supplier' element={<FullSupplierForm/>} /> */}
+						<Route path='/add-supplie' element={<AddSupplier/>} />
 						<Route path='/unauthorized' element={<UnAuthorized />} />
 					</Route>
 				</Routes>
+				</ProductProvider>
 			</AuthProvider>
 		</>
 	);

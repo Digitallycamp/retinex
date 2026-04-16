@@ -25,32 +25,30 @@ import { useAuth } from '../../../core/store/AuthContext';
 // ── Nav structure mirrors the screenshot exactly ──
 const navSections = [
 	{
-		items: [{ label: 'Home', icon: Home, link: 'dashboard' }],
-	},
-	{
 		items: [
-			{ label: 'Magic Thumbnails', icon: Wand2, link: 'inventory' },
-			{ label: 'Winning Templates', icon: Trophy, link: 'templates' },
+			    { label: 'Home', icon: Home, link: 'dashboard' },
+			    { label: 'Inventory', icon: Wand2, link: 'inventory' },
+				{ label: 'Settings', icon: Scissors, link: 'settings' },
 		],
 	},
+,
 	{
 		label: 'Inventory',
 		items: [
-			{ label: 'Create new', icon: PlusCircle, link: 'add-inventory' },
-			{ label: 'Black Friday', icon: Tag, link: 'black-friday' },
-			{ label: 'ClipMagic', icon: Scissors, link: 'clipmagic' },
+			{ label: 'Create product', icon: PlusCircle, link: 'create-product' },
+			{ label: 'Add supplier', icon: PlusCircle, link: 'add-supplie' },			
 		],
 	},
 	{
 		items: [
-			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'face-cloning' },
+			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'add-supplier' },
 		],
 	},
 	{
 		label: 'TRAINING',
 		items: [
 			{ label: 'Tutorials', icon: BookOpen, link: 'tutorials' },
-			{ label: 'Facebook Group', icon: Users, link: 'facebook-group' },
+			{ label: 'Facebook Group', icon: Users, link: 'add-product' },
 			{ label: 'Affiliate Partners', icon: Handshake, link: 'affiliate' },
 		],
 	},

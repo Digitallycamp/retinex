@@ -15,11 +15,18 @@ import ProtectedRouted from './app/routes/ProtectedRouted';
 import UnAuthorized from './app/features/users/unauthorized';
 import VerifyEmailPage from './app/features/auth/verify-email';
 import AddInventoryPage from './app/features/users/add_inventory';
+import CreateOrder from './app/features/users/create-order/index';
+import SalesOrders from './app/features/users/sales-orders/index';
+import { OrderProvider } from './context/OrderContext';
+import Suppliers from './app/features/users/suppliers/index';
+import Reports from './app/features/users/reports-page/index';
+
 
 function App() {
 	return (
 		<>
 			<AuthProvider>
+				<OrderProvider>
 				<Routes>
 					<Route element={<MainLayout />}>
 						<Route path='/' element={<Home />} />
@@ -52,6 +59,7 @@ function App() {
 							</AuthGuard>
 						}
 					/>
+					
 					<Route
 						element={
 							<ProtectedRouted>
@@ -61,10 +69,15 @@ function App() {
 					>
 						<Route path='/dashboard' element={<DashboardOverview />} />
 						<Route path='/add-inventory' element={<AddInventoryPage />} />
-						<Route path='/inventory' element={<div>Inventory</div>} />
+						<Route path='/create-order' element={<CreateOrder/>} />
+						<Route path='/sales-orders' element={<SalesOrders/>} />
+						<Route path='/suppliers' element={<Suppliers/>} />
+						<Route path='/reports' element={<Reports/>} />
 						<Route path='/unauthorized' element={<UnAuthorized />} />
 					</Route>
+					
 				</Routes>
+				</OrderProvider>
 			</AuthProvider>
 		</>
 	);

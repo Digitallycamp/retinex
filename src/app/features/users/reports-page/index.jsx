@@ -1,25 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-	TrendingUp,
-	TrendingDown,
-	Package,
-	ShoppingCart,
-	DollarSign,
-	Calendar,
-	Download,
-	Filter,
-	ChevronDown,
-	BarChart3,
-	PieChart,
-	ArrowUp,
-	ArrowDown,
-	AlertCircle,
-	Clock,
-	CreditCard,
-	Store,
-	Target,
-	Award,
-} from 'lucide-react';
+import { TrendingUp, Download, Target, Award } from 'lucide-react';
 import { db } from '../../../core/firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import {
@@ -45,19 +25,6 @@ const Reports = () => {
 	const [salesData, setSalesData] = useState([]);
 	const [productsData, setProductsData] = useState([]);
 	const [dateRange, setDateRange] = useState('month'); // week, month, quarter, year
-	const [selectedPeriod, setSelectedPeriod] = useState('monthly');
-
-	// Colors for charts - matching brand colors
-	const COLORS = [
-		'#3F0E40',
-		'#14532d',
-		'#ca8a04',
-		'#64748b',
-		'#0ea5e9',
-		'#ef4444',
-		'#8b5cf6',
-		'#ec4899',
-	];
 
 	// Fetch data from Firebase
 	useEffect(() => {

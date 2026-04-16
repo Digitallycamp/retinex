@@ -23,6 +23,11 @@ import ProductForm from './app/features/users/add_inventory/createproduct';
 import Settings from './app/features/users/settings_page';
 import AddSupplier from './app/features/users/add_inventory/index2';
 // import AddSupplierForm from './app/features/users/add_supplier';
+import CreateOrder from './app/features/users/create-order/index';
+import SalesOrders from './app/features/users/sales-orders/index';
+import { OrderProvider } from './context/OrderContext';
+import Suppliers from './app/features/users/suppliers/index';
+import Reports from './app/features/users/reports-page/index';
 
 
 function App() {
@@ -30,6 +35,7 @@ function App() {
 		<>
 			<AuthProvider>
 				<ProductProvider>
+				<OrderProvider>
 				<Routes>
 					<Route element={<MainLayout />}>
 						<Route path='/chill' element={<Home />} />
@@ -77,10 +83,16 @@ function App() {
 						<Route path='/settings' element={<Settings />} />
 						{/* <Route path='/add-supplier' element={<FullSupplierForm/>} /> */}
 						<Route path='/add-supplie' element={<AddSupplier/>} />
+						<Route path='/create-order' element={<CreateOrder/>} />
+						<Route path='/sales-orders' element={<SalesOrders/>} />
+						<Route path='/suppliers' element={<Suppliers/>} />
+						<Route path='/reports' element={<Reports/>} />
 						<Route path='/unauthorized' element={<UnAuthorized />} />
 					</Route>
+					
 				</Routes>
 				</ProductProvider>
+				</OrderProvider>
 			</AuthProvider>
 		</>
 	);

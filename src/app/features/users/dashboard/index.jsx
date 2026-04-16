@@ -2,22 +2,19 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
-	Home,
-	Wand2,
-	Trophy,
 	PlusCircle,
-	Tag,
-	Scissors,
-	ScanFace,
-	BookOpen,
-	Users,
-	Handshake,
 	UserCircle,
 	ChevronDown,
 	Zap,
 	Menu,
 	X,
 	LogOutIcon,
+	LayoutDashboard,
+	Box,
+	ShoppingCart,
+	Van,
+	ChartLine,
+	Settings,
 } from 'lucide-react';
 import { uiColor } from '../../../core/theme';
 import { useAuth } from '../../../core/store/AuthContext';
@@ -25,6 +22,7 @@ import { useAuth } from '../../../core/store/AuthContext';
 // ── Nav structure mirrors the screenshot exactly ──
 const navSections = [
 	{
+<<<<<<< feature/add-products
 		items: [
 			    { label: 'Home', icon: Home, link: 'dashboard' },
 			    { label: 'Inventory', icon: Wand2, link: 'inventory' },
@@ -37,15 +35,33 @@ const navSections = [
 		items: [
 			{ label: 'Create product', icon: PlusCircle, link: 'create-product' },
 			{ label: 'Add supplier', icon: PlusCircle, link: 'add-supplie' },			
-		],
+=======
+		items: [{ label: 'Dashboard', icon: LayoutDashboard, link: 'dashboard' }],
 	},
 	{
 		items: [
-			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'add-supplier' },
+			{ label: 'Inventory', icon: Box, link: 'inventory' },
+			{ label: 'Sales Orders', icon: ShoppingCart, link: 'sales-orders' },
+			{ label: 'Suppliers', icon: Van, link: 'suppliers' },
+			{ label: 'Reports', icon: ChartLine, link: 'reports' },
+
+>>>>>>> main
 		],
 	},
 	{
-		label: 'TRAINING',
+		label: 'Quick Actions',
+		items: [
+<<<<<<< feature/add-products
+			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'add-supplier' },
+=======
+			{ label: 'Create Order', icon: ShoppingCart, link: 'create-order' },
+			{ label: 'Add Product', icon: PlusCircle, link: 'add-inventory' },
+			{ label: 'Add Supplier', icon: Van, link: 'clipmagic' },
+>>>>>>> main
+		],
+	},
+	{
+		label: 'SUPPORT',
 		items: [
 			{ label: 'Tutorials', icon: BookOpen, link: 'tutorials' },
 			{ label: 'Facebook Group', icon: Users, link: 'add-product' },
@@ -259,7 +275,7 @@ export default function Dashboard() {
 				</header>
 
 				{/* Page content */}
-				<main className='flex-1 p-3 md:p-4 overflow-auto'>
+				<main className='flex-1 p-3 md:p-4 overflow-auto '>
 					<section className='bg-white rounded-t-xl shadow-sm min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-2rem)] p-4'>
 						<Outlet />
 					</section>

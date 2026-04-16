@@ -15,6 +15,7 @@ import {
 	Van,
 	ChartLine,
 	Settings,
+	Settings2,
 } from 'lucide-react';
 import { uiColor } from '../../../core/theme';
 import { useAuth } from '../../../core/store/AuthContext';
@@ -22,20 +23,6 @@ import { useAuth } from '../../../core/store/AuthContext';
 // ── Nav structure mirrors the screenshot exactly ──
 const navSections = [
 	{
-<<<<<<< feature/add-products
-		items: [
-			    { label: 'Home', icon: Home, link: 'dashboard' },
-			    { label: 'Inventory', icon: Wand2, link: 'inventory' },
-				{ label: 'Settings', icon: Scissors, link: 'settings' },
-		],
-	},
-,
-	{
-		label: 'Inventory',
-		items: [
-			{ label: 'Create product', icon: PlusCircle, link: 'create-product' },
-			{ label: 'Add supplier', icon: PlusCircle, link: 'add-supplie' },			
-=======
 		items: [{ label: 'Dashboard', icon: LayoutDashboard, link: 'dashboard' }],
 	},
 	{
@@ -44,29 +31,19 @@ const navSections = [
 			{ label: 'Sales Orders', icon: ShoppingCart, link: 'sales-orders' },
 			{ label: 'Suppliers', icon: Van, link: 'suppliers' },
 			{ label: 'Reports', icon: ChartLine, link: 'reports' },
-
->>>>>>> main
 		],
 	},
 	{
 		label: 'Quick Actions',
 		items: [
-<<<<<<< feature/add-products
-			{ label: 'A.I. Face Cloning', icon: ScanFace, link: 'add-supplier' },
-=======
 			{ label: 'Create Order', icon: ShoppingCart, link: 'create-order' },
 			{ label: 'Add Product', icon: PlusCircle, link: 'add-inventory' },
-			{ label: 'Add Supplier', icon: Van, link: 'clipmagic' },
->>>>>>> main
+			{ label: 'Add Supplier', icon: Van, link: 'suppliers' },
 		],
 	},
 	{
 		label: 'SUPPORT',
-		items: [
-			{ label: 'Tutorials', icon: BookOpen, link: 'tutorials' },
-			{ label: 'Facebook Group', icon: Users, link: 'add-product' },
-			{ label: 'Affiliate Partners', icon: Handshake, link: 'affiliate' },
-		],
+		items: [{ label: 'Settings', icon: Settings2, link: 'settings' }],
 	},
 ];
 

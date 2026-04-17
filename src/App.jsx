@@ -23,63 +23,75 @@ import ProductForm from './app/features/users/add_inventory/createproduct';
 import Settings from './app/features/users/settings_page';
 import AddSupplier from './app/features/users/add_inventory/index2';
 // import AddSupplierForm from './app/features/users/add_supplier';
-
+import CreateOrder from './app/features/users/create-order/index';
+import SalesOrders from './app/features/users/sales-orders/index';
+import { OrderProvider } from './context/OrderContext';
+import Suppliers from './app/features/users/suppliers/index';
+import Reports from './app/features/users/reports-page/index';
 
 function App() {
 	return (
 		<>
 			<AuthProvider>
 				<ProductProvider>
-				<Routes>
-					<Route element={<MainLayout />}>
-						
-						<Route path='/about-us' element={<div>About us</div>} />
-						<Route
-							path='/'
-							element={
-								<AuthGuard>
-									<GetStarted />
-								</AuthGuard>
-							}
-						/>
-						<Route
-							path='/create-account'
-							element={
-								<AuthGuard>
-									<CreateAccount />
-								</AuthGuard>
-							}
-						/>
 
-						<Route path='/forgot-password' element={<ForgotPassword />} />
-						<Route path='/reset-password' element={<ResetPassword />} />
-					</Route>
-					<Route
-						path='/verify-email'
-						element={
-							<AuthGuard>
-								<VerifyEmailPage />
-							</AuthGuard>
-						}
-					/>
-					
-					<Route
-						element={
-							<ProtectedRouted>
-								<Dashboard />
-							</ProtectedRouted>
-						}
-					>
-						<Route path='/dashboard' element={<DashboardOverview />} />
-						<Route path='/add-inventory' element={<AddInventoryPage />} />
-						<Route path='/create-product' element={< ProductForm />} />
-						<Route path='/inventory' element={<Inventory />} />
-						<Route path='/settings' element={<Settings />} />
-						{/* <Route path='/add-supplier' element={<FullSupplierForm/>} /> */}
-						<Route path='/add-supplie' element={<AddSupplier/>} />
-						<Route path='/unauthorized' element={<UnAuthorized />} />
-					</Route>
-				</Routes>
+					<OrderProvider>
+						<Routes>
+							<Route element={<MainLayout />}>
+								<Route path='/' element={<Home />} />
+								<Route path='/about-us' element={<div>About us</div>} />
+								<Route
+									path='/get-started'
+									element={
+										<AuthGuard>
+											<GetStarted />
+										</AuthGuard>
+									}
+								/>
+								<Route
+									path='/create-account'
+									element={
+										<AuthGuard>
+											<CreateAccount />
+										</AuthGuard>
+									}
+								/>
+
+
+								<Route path='/forgot-password' element={<ForgotPassword />} />
+								<Route path='/reset-password' element={<ResetPassword />} />
+							</Route>
+							<Route
+								path='/verify-email'
+								element={
+									<AuthGuard>
+										<VerifyEmailPage />
+									</AuthGuard>
+								}
+							/>
+
+							<Route
+								element={
+									<ProtectedRouted>
+										<Dashboard />
+									</ProtectedRouted>
+								}
+							>
+								<Route path='/dashboard' element={<DashboardOverview />} />
+								<Route path='/add-inventory' element={<AddInventoryPage />} />
+								<Route path='/create-product' element={<ProductForm />} />
+								<Route path='/inventory' element={<Inventory />} />
+								<Route path='/settings' element={<Settings />} />
+								{/* <Route path='/add-supplier' element={<FullSupplierForm/>} /> */}
+								<Route path='/add-supplie' element={<AddSupplier />} />
+								<Route path='/create-order' element={<CreateOrder />} />
+								<Route path='/sales-orders' element={<SalesOrders />} />
+								<Route path='/suppliers' element={<Suppliers />} />
+								<Route path='/reports' element={<Reports />} />
+								<Route path='/unauthorized' element={<UnAuthorized />} />
+							</Route>
+						</Routes>
+					</OrderProvider>
 				</ProductProvider>
 			</AuthProvider>
 		</>

@@ -32,7 +32,7 @@ function App() {
 				<ProductProvider>
 				<Routes>
 					<Route element={<MainLayout />}>
-						<Route path='/chill' element={<Home />} />
+						
 						<Route path='/about-us' element={<div>About us</div>} />
 						<Route
 							path='/'

@@ -78,9 +78,7 @@ const AddSupplier = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8" style={{ 
-      background: 'radial-gradient(circle at 0% 0%, rgba(63,14,64,0.08) 0%, rgba(202,138,4,0.05) 50%, rgba(6,78,59,0.08) 100%)'
-    }}>
+    
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -466,33 +464,9 @@ const AddSupplier = () => {
           </form>
         </motion.div>
 
-        {/* Info Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.4 }}
-          className="mt-6 p-5 rounded-xl shadow-md"
-          style={{ 
-            background: 'linear-gradient(135deg, rgba(63,14,64,0.05) 0%, rgba(202,138,4,0.05) 100%)',
-            border: '1px solid rgba(63,14,64,0.1)'
-          }}
-        >
-          <div className="flex items-start gap-3">
-            <div className="text-2xl mt-0.5">💡</div>
-            <div>
-              <p className="font-semibold mb-2" style={{ color: '#3F0E40' }}>Supplier Management Tips:</p>
-              <ul className="space-y-1 text-sm" style={{ color: '#4B5563' }}>
-                <li className="flex items-center gap-2">✓ Always verify supplier credentials before adding</li>
-                <li className="flex items-center gap-2">✓ Keep contact information up to date</li>
-                <li className="flex items-center gap-2">✓ Track supplier performance regularly</li>
-                <li className="flex items-center gap-2">✓ Maintain backup suppliers for critical items</li>
-                <li className="flex items-center gap-2">✓ All fields marked with <span className="text-red-500 font-semibold">*</span> are required</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
-    </div>
+   
   );
 };
 

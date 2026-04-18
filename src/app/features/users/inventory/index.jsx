@@ -286,8 +286,8 @@ const FunctionalInventory = () => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => handleEdit(product)}
-                        className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2"
-                        style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' }}
+                        className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2 border-2 border-blue-500"
+                        // style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' , }}
                       >
                         <Edit2 size={16} /> Edit
                       </motion.button>
@@ -360,8 +360,8 @@ const FunctionalInventory = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => handleEdit(product)}
-                            className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2"
-                            style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' }}
+                            className="text-black px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2 border-2 border-black border-[0.5px] "
+                            // style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' }}
                           >
                             <Edit2 size={14} /> Edit
                           </motion.button>
@@ -370,7 +370,7 @@ const FunctionalInventory = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setShowDeleteConfirm(product.id)}
                             className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2"
-                            style={{ background: 'linear-gradient(135deg, #DC2626, #991B1B)' }}
+                            style={{ background: 'linear-gradient(120deg, #DC2626, #991B1B)' }}
                           >
                             <Trash2 size={14} /> Delete
                           </motion.button>

@@ -138,9 +138,7 @@ const FunctionalInventory = () => {
   const categories = ['All', ...new Set(products.map(p => p.category))];
 
   return (
-    <div className="p-4 md:p-8 min-h-screen" style={{ 
-      background: 'radial-gradient(circle at 0% 0%, rgba(63,14,64,0.08) 0%, rgba(202,138,4,0.05) 50%, rgba(6,78,59,0.08) 100%)',
-    }}>
+    <>
       <div className="max-w-6xl mx-auto">
         
         {/* Header Section with Gradient */}
@@ -162,7 +160,7 @@ const FunctionalInventory = () => {
             </h1>
             <p className="text-gray-600">Manage and track your product inventory</p>
           </div>
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowAddModal(true)}
@@ -172,7 +170,7 @@ const FunctionalInventory = () => {
             }}
           >
             <Plus size={20} /> Add Product
-          </motion.button>
+          </motion.button> */}
         </motion.div>
 
         {/* Functional Header with enhanced UI */}
@@ -286,7 +284,7 @@ const FunctionalInventory = () => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => handleEdit(product)}
-                        className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2 border-2 border-blue-500"
+                        className="flex-1 py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2 text-black border-2 border-black border-[0.5px] "
                         // style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' , }}
                       >
                         <Edit2 size={16} /> Edit
@@ -296,7 +294,7 @@ const FunctionalInventory = () => {
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setShowDeleteConfirm(product.id)}
                         className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2"
-                        style={{ background: 'linear-gradient(135deg, #DC2626, #991B1B)' }}
+                        style={{ background: 'purple' }}
                       >
                         <Trash2 size={16} /> Delete
                       </motion.button>
@@ -311,7 +309,7 @@ const FunctionalInventory = () => {
           <div className={`hidden md:block overflow-x-auto ${filteredProducts.length === 0 ? 'hidden' : ''}`}>
             <table className="w-full text-left">
               <thead>
-                <tr style={{ background: 'linear-gradient(135deg, #3F0E40 0%, #6B21A5 100%)' }} className="text-white">
+                <tr  className="text-white relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3F0E40] via-[#3F0E40]/95 to-green-900 p-4 sm:p-6 lg:p-8 shadow-xl">
                   <th className="p-4 font-bold uppercase text-xs tracking-wider rounded-tl-lg">Product Name</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider">Category</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider text-center">Current Stock</th>
@@ -337,12 +335,12 @@ const FunctionalInventory = () => {
                       <td className="p-4 font-semibold text-gray-800">{product.name}</td>
                       <td className="p-4 text-gray-600">{product.category}</td>
                       <td className="p-4 text-center">
-                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-bold shadow-sm" style={{ background: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)', color: '#065F46' }}>
+                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-bold shadow-sm border-b-linear-gradient(135deg, #D1FAE5, #A7F3D0) text-black  border-[0.5px]" style={{ color: '#065F46' }}>
                           {product.stock} units
                         </span>
                       </td>
                       <td className="p-4 text-center">
-                        <span className="text-base font-bold text-yellow-600">₦{product.price}</span>
+                        <span className="text-base font-bold text-black-600">₦{product.price}</span>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-3">
@@ -370,7 +368,7 @@ const FunctionalInventory = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setShowDeleteConfirm(product.id)}
                             className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2"
-                            style={{ background: 'linear-gradient(120deg, #DC2626, #991B1B)' }}
+                            style={{ background: 'purple' }}
                           >
                             <Trash2 size={14} /> Delete
                           </motion.button>
@@ -471,94 +469,7 @@ const FunctionalInventory = () => {
         )}
       </AnimatePresence>
 
-      {/* Add Product Modal */}
-      <AnimatePresence>
-        {showAddModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            onClick={() => setShowAddModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6"
-              style={{ background: 'linear-gradient(135deg, #ffffff 0%, #faf5ff 100%)' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 className="text-xl font-bold mb-4" style={{ 
-                background: 'linear-gradient(135deg, #059669, #CA8A04)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Add New Product</h2>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
-                  <input
-                    type="text"
-                    value={addForm.name}
-                    onChange={(e) => setAddForm({...addForm, name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
-                    placeholder="Enter product name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
-                  <select
-                    value={addForm.category}
-                    onChange={(e) => setAddForm({...addForm, category: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
-                  >
-                    <option value="Offices Supplies">Offices Supplies</option>
-                    <option value="Office Supplies">Office Supplies</option>
-                    <option value="Storage">Storage</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Stock Quantity *</label>
-                  <input
-                    type="number"
-                    value={addForm.stock}
-                    onChange={(e) => setAddForm({...addForm, stock: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
-                    placeholder="Enter stock quantity"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Price (₦)</label>
-                  <input
-                    type="number"
-                    value={addForm.price}
-                    onChange={(e) => setAddForm({...addForm, price: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
-                    placeholder="Enter price"
-                  />
-                </div>
-                <div className="flex gap-3 pt-4">
-                  <button
-                    onClick={() => setShowAddModal(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleAddProduct}
-                    disabled={isAdding}
-                    className="flex-1 px-4 py-2 text-white rounded-lg hover:shadow-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ background: 'linear-gradient(135deg, #059669, #047857)' }}
-                  >
-                    {isAdding ? 'Adding...' : 'Add Product'}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      
 
       {/* Delete Confirmation Modal */}
       <AnimatePresence>
@@ -604,7 +515,7 @@ const FunctionalInventory = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 

@@ -215,20 +215,18 @@ const CreateOrder = () => {
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6 w-full max-w-full">
                 {/* Page Header */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3F0E40] via-[#3F0E40]/95 to-green-900 p-4 sm:p-6 lg:p-8 shadow-xl">
-                    <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:20px_20px]"></div>
-                    <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-yellow-600/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-36 sm:w-48 h-36 sm:h-48 bg-green-900/20 rounded-full blur-3xl"></div>
+                <div className="relative overflow-hidden rounded-xl border sm:rounded-2xl  p-4 sm:p-6 lg:p-8 shadow-xl">
+                    
                     <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
                         <div>
-                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">Create New Order</h1>
-                            <p className="text-white/80 text-xs sm:text-sm lg:text-base">Add products and generate transaction receipt</p>
+                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-1">Create New Order</h1>
+                            <p className="text-black/80 text-xs sm:text-sm lg:text-base">Add products and generate transaction receipt</p>
                         </div>
                         <div className="flex items-center gap-3 w-full lg:w-auto">
-                            <div className="bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-xl border border-white/20 flex-1 lg:flex-none">
+                            <div className="bg-black/10 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-xl border border-black/20 flex-1 lg:flex-none">
                                 <div className="flex items-center gap-2">
-                                    <Calendar size={14} className="text-yellow-600 flex-shrink-0" />
-                                    <span className="text-white text-xs sm:text-sm font-medium truncate">
+                                    <Calendar size={14} className="text-[#3F0E40] flex-shrink-0" />
+                                    <span className="text-black text-xs sm:text-sm font-medium truncate">
                                         {new Date().toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
                                     </span>
                                 </div>
@@ -247,7 +245,7 @@ const CreateOrder = () => {
                                 <div className="relative flex-1">
                                     <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-[#3F0E40]/40" size={16} />
                                     <input 
-                                        className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                        className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                         placeholder="Search products..."
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -256,7 +254,7 @@ const CreateOrder = () => {
                                 <div className="flex items-center gap-2">
                                     <Filter size={14} className="text-[#3F0E40]/60 flex-shrink-0" />
                                     <select 
-                                        className="text-sm border border-slate-200 rounded-xl px-3 py-2 sm:py-2.5 outline-none cursor-pointer bg-slate-50 hover:border-yellow-600 focus:border-yellow-600 transition-colors flex-1 sm:flex-none"
+                                        className="text-sm border border-slate-200 rounded-xl px-3 py-2 sm:py-2.5 outline-none cursor-pointer bg-slate-50 hover:border-[#3F0E40] focus:border-[#3F0E40] transition-colors flex-1 sm:flex-none"
                                         value={categoryFilter}
                                         onChange={(e) => setCategoryFilter(e.target.value)}
                                     >
@@ -276,7 +274,7 @@ const CreateOrder = () => {
                                     onClick={() => setCategoryFilter(cat)}
                                     className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
                                         categoryFilter === cat 
-                                            ? 'bg-gradient-to-r from-[#3F0E40] to-green-900 text-white shadow-md' 
+                                            ? 'bg-[#562a57] text-white shadow-md' 
                                             : 'bg-white text-[#3F0E40] border border-[#3F0E40]/20 hover:bg-[#3F0E40]/5'
                                     }`}
                                 >
@@ -311,7 +309,7 @@ const CreateOrder = () => {
                                                         }}
                                                         className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                                                             categoryFilter === cat
-                                                                ? 'bg-gradient-to-r from-[#3F0E40] to-green-900 text-white'
+                                                                ? 'bg-[#562a57] text-white'
                                                                 : 'text-[#3F0E40] hover:bg-[#3F0E40]/5'
                                                         }`}
                                                     >
@@ -348,7 +346,7 @@ const CreateOrder = () => {
                                                 return (
                                                     <tr 
                                                         key={product.id} 
-                                                        className={`border-b border-slate-100 hover:bg-gradient-to-r hover:from-yellow-600/5 hover:to-transparent transition-all duration-200 ${isOutOfStock ? 'opacity-60' : ''}`}
+                                                        className={`border-b border-slate-100 hover:bg-gradient-to-r hover:from-[#3F0E40]/5 hover:to-transparent transition-all duration-200 ${isOutOfStock ? 'opacity-60' : ''}`}
                                                     >
                                                         <td className="p-4">
                                                             <div className="flex items-center gap-3">
@@ -359,7 +357,7 @@ const CreateOrder = () => {
                                                             </div>
                                                         </td>
                                                         <td className="p-4">
-                                                            <span className="bg-yellow-600/10 text-yellow-600 px-2.5 py-1 rounded-lg text-xs font-medium border border-yellow-600/20 whitespace-nowrap">
+                                                            <span className="bg-[#3F0E40]/10 text-[#3F0E40] px-2.5 py-1 rounded-lg text-xs font-medium border border-[#3F0E40]/20 whitespace-nowrap">
                                                                 {product.category}
                                                             </span>
                                                         </td>
@@ -387,7 +385,7 @@ const CreateOrder = () => {
                                                             <button 
                                                                 onClick={() => addToCart(product)} 
                                                                 disabled={product.stock === 0}
-                                                                className={`bg-gradient-to-r from-[#3F0E40] to-green-900 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 mx-auto ${
+                                                                className={`bg-[#562a57] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 mx-auto ${
                                                                     product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
                                                                 }`}
                                                             >
@@ -431,7 +429,7 @@ const CreateOrder = () => {
                                                             </div>
                                                             <div className="min-w-0 flex-1">
                                                                 <h3 className="font-medium text-[#3F0E40] truncate">{product.name}</h3>
-                                                                <span className="bg-yellow-600/10 text-yellow-600 px-2 py-0.5 rounded-lg text-xs font-medium border border-yellow-600/20 inline-block mt-1">
+                                                                <span className="bg-[#3F0E40]/10 text-[#3F0E40] px-2 py-0.5 rounded-lg text-xs font-medium border border-[#3F0E40]/20 inline-block mt-1">
                                                                     {product.category}
                                                                 </span>
                                                             </div>
@@ -448,7 +446,7 @@ const CreateOrder = () => {
                                                                 <span className={`font-bold ${
                                                                     product.stock === 0 ? 'text-red-500' :
                                                                     product.stock > 50 ? 'text-green-900' : 
-                                                                    product.stock > 20 ? 'text-yellow-600' : 'text-red-500'
+                                                                    product.stock > 20 ? 'text-[#3F0E40]' : 'text-red-500'
                                                                 }`}>
                                                                     {product.stock} units
                                                                 </span>
@@ -462,7 +460,7 @@ const CreateOrder = () => {
                                                         <button 
                                                             onClick={() => addToCart(product)} 
                                                             disabled={product.stock === 0}
-                                                            className={`bg-gradient-to-r from-[#3F0E40] to-green-900 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 ${
+                                                            className={`bg-[#562a57] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 ${
                                                                 product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
                                                             }`}
                                                         >
@@ -521,7 +519,7 @@ const CreateOrder = () => {
                                                             onClick={() => handlePageChange(page)}
                                                             className={`min-w-[36px] h-9 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                                                                 currentPage === page
-                                                                    ? 'bg-gradient-to-r from-[#3F0E40] to-green-900 text-white shadow-md'
+                                                                    ? 'bg-[#562a57] text-white shadow-md'
                                                                     : 'text-[#3F0E40] hover:bg-[#3F0E40]/5'
                                                             }`}
                                                         >
@@ -576,13 +574,12 @@ const CreateOrder = () => {
                     <div className="w-full lg:w-96 flex-shrink-0">
                         <div className="bg-white rounded-xl border shadow-sm overflow-hidden lg:sticky lg:top-4">
                             {/* Cart Header */}
-                            <div className="bg-gradient-to-br from-[#3F0E40] to-green-900 p-4 sm:p-5 text-white relative overflow-hidden">
-                                <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-600/20 rounded-full blur-2xl"></div>
+                            <div className=" p-4 sm:p-5 border-b text-black relative overflow-hidden">
+                                
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
-                                            <ShoppingCart size={18} className="text-white" />
+                                            <ShoppingCart size={18} className="text-black" />
                                         </div>
                                         <h2 className="font-bold text-base sm:text-lg">Current Order</h2>
                                     </div>
@@ -659,7 +656,7 @@ const CreateOrder = () => {
 
                                 {/* Cart Summary */}
                                 {cart.length > 0 && (
-                                    <div className="mt-4 sm:mt-6 pt-4 border-t-2 border-t-yellow-600/20">
+                                    <div className="mt-4 sm:mt-6 pt-4 border-t-2 border-t-[#3F0E40]/20">
                                         <div className="space-y-2 sm:space-y-3 mb-4">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-xs sm:text-sm text-slate-500">Total Items:</span>
@@ -670,13 +667,13 @@ const CreateOrder = () => {
                                                 <span className="font-bold text-green-900">₦{cartTotal.toLocaleString()}</span>
                                             </div>
                                         </div>
-                                        <div className="bg-gradient-to-r from-[#3F0E40] to-green-900 rounded-xl p-3 sm:p-4 -mx-1">
+                                        <div className=" rounded-xl border p-3 sm:p-4 -mx-1">
                                             <div className="flex justify-between items-center">
                                                 <div>
-                                                    <p className="text-yellow-600 text-xs font-bold uppercase tracking-wider mb-0.5">Total</p>
-                                                    <p className="text-white/80 text-xs">{cartItemsCount} items</p>
+                                                    <p className="text-black-600 text-xs font-bold uppercase tracking-wider mb-0.5">Total</p>
+                                                    <p className="text-black/80 text-xs">{cartItemsCount} items</p>
                                                 </div>
-                                                <span className="text-xl sm:text-2xl font-black text-white">
+                                                <span className="text-xl sm:text-2xl font-black text-black">
                                                     ₦{cartTotal.toLocaleString()}
                                                 </span>
                                             </div>
@@ -684,7 +681,7 @@ const CreateOrder = () => {
                                         <button 
                                             disabled={cart.length === 0}
                                             onClick={() => setIsModalOpen(true)}
-                                            className="w-full mt-4 bg-yellow-600 text-white py-3 sm:py-3.5 rounded-xl font-bold hover:bg-yellow-500 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-yellow-600/25 text-sm sm:text-base"
+                                            className="w-full mt-4 bg-[#3F0E40] text-white  py-3 sm:py-3.5 rounded-xl font-bold hover:bg-[#3F0E40] transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-[#3F0E40]/25 text-sm sm:text-base"
                                         >
                                             Confirm Purchase
                                         </button>
@@ -700,9 +697,8 @@ const CreateOrder = () => {
                     <div className="fixed inset-0 bg-[#3F0E40]/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
                         <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform scale-100 animate-in zoom-in-95 duration-200 border-2 border-[#3F0E40]/10 max-h-[90vh] overflow-y-auto">
                             {/* Modal Header */}
-                            <div className="bg-gradient-to-br from-[#3F0E40] to-green-900 p-5 sm:p-6 text-white relative overflow-hidden">
-                                <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-600/20 rounded-full blur-2xl"></div>
+                            <div className="bg-[#8D5D93] p-5 sm:p-6 text-white relative overflow-hidden">
+                                
                                 <div className="relative z-10">
                                     <h3 className="text-lg sm:text-xl font-bold mb-1">Confirm Order</h3>
                                     <p className="text-xs opacity-90">Review order details before confirmation</p>
@@ -718,7 +714,7 @@ const CreateOrder = () => {
                                     <div className="relative">
                                         <User className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-[#3F0E40]/40" size={16} />
                                         <input 
-                                            className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-yellow-600 focus:bg-white transition-all text-sm"
+                                            className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#3F0E40] focus:bg-white transition-all text-sm"
                                             placeholder="Enter customer name (Default: Guest)"
                                             value={customerName}
                                             onChange={(e) => setCustomerName(e.target.value)}
@@ -745,7 +741,7 @@ const CreateOrder = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="border-t-2 border-t-yellow-600/20 mt-3 pt-3">
+                                    <div className="border-t-2 border-t-[#3F0E40]/20 mt-3 pt-3">
                                         <div className="flex justify-between items-center">
                                             <span className="font-bold text-[#3F0E40]">Total</span>
                                             <span className="text-lg sm:text-xl font-black text-green-900">₦{cartTotal.toLocaleString()}</span>
@@ -754,8 +750,8 @@ const CreateOrder = () => {
                                 </div>
 
                                 {/* Info Note */}
-                                <div className="mt-4 p-3 bg-yellow-600/5 rounded-xl border border-yellow-600/20 flex items-start gap-2">
-                                    <AlertCircle size={14} className="text-yellow-600 flex-shrink-0 mt-0.5" />
+                                <div className="mt-4 p-3 bg-[#3F0E40]/5 rounded-xl border border-[#3F0E40]/20 flex items-start gap-2">
+                                    <AlertCircle size={14} className="text-[#3F0E40] flex-shrink-0 mt-0.5" />
                                     <p className="text-xs text-[#3F0E40]/70">
                                         This order will be added to the Sales Orders page with the current date and time.
                                     </p>
@@ -771,7 +767,7 @@ const CreateOrder = () => {
                                     </button>
                                     <button 
                                         onClick={handleConfirmPurchase} 
-                                        className="flex-1 py-3 sm:py-3.5 px-3 sm:px-4 bg-gradient-to-r from-[#3F0E40] to-green-900 text-white rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
+                                        className="flex-1 py-3 sm:py-3.5 px-3 sm:px-4 bg-[#562a57] text-white rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
                                     >
                                         Confirm
                                     </button>

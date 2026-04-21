@@ -21,7 +21,7 @@ import Inventory from './app/features/users/inventory';
 import { ProductProvider } from './app/features/users/inventory/ProductContext';
 import ProductForm from './app/features/users/add_inventory/createproduct';
 import Settings from './app/features/users/settings_page';
-import AddSupplier from './app/features/users/add_inventory/index2';
+import AddSupplier from './app/features/users/add_inventory/addsupplier';
 // import AddSupplierForm from './app/features/users/add_supplier';
 import CreateOrder from './app/features/users/create-order/index';
 import SalesOrders from './app/features/users/sales-orders/index';
@@ -34,6 +34,7 @@ function App() {
 		<>
 			<AuthProvider>
 				<ProductProvider>
+
 					<OrderProvider>
 						<Routes>
 							<Route element={<MainLayout />}>
@@ -55,6 +56,7 @@ function App() {
 										</AuthGuard>
 									}
 								/>
+
 
 								<Route path='/forgot-password' element={<ForgotPassword />} />
 								<Route path='/reset-password' element={<ResetPassword />} />

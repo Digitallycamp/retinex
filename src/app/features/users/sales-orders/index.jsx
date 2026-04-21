@@ -154,27 +154,25 @@ const SalesOrders = () => {
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 w-full max-w-full">
                 {/* Enhanced Header with Professional Gradient */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3F0E40] via-[#3F0E40]/95 to-green-900 p-4 sm:p-6 lg:p-8 shadow-xl">
-                    <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:20px_20px]"></div>
-                    <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-yellow-600/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-36 sm:w-48 h-36 sm:h-48 bg-green-900/20 rounded-full blur-3xl"></div>
+                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border  p-4 sm:p-6 lg:p-8 shadow-xl">
+                    
                     <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
                         <div>
-                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">Sales Orders</h1>
-                            <p className="text-white/80 text-xs sm:text-sm lg:text-base">Manage and track your customer orders</p>
+                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-1">Sales Orders</h1>
+                            <p className="text-black/80 text-xs sm:text-sm lg:text-base">Manage and track your customer orders</p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full lg:w-auto">
                             <div className="relative flex-1 lg:flex-none">
-                                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-white/60" size={16} />
+                                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-black/60" size={16} />
                                 <input 
-                                    className="w-full lg:w-64 xl:w-72 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-sm outline-none placeholder:text-white/60 text-white focus:bg-white/20 focus:border-yellow-600/50 transition-all"
+                                    className="w-full lg:w-64 xl:w-72 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-black/10 backdrop-blur-sm border border-black/20 rounded-xl text-sm outline-none placeholder:text-black/60 text-black focus:bg-white/20 focus:border-[#3F0E40]/50 transition-all"
                                     placeholder="Search Order ID or Customer..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </div>
                             <button 
-                                className="bg-yellow-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap shadow-lg hover:shadow-yellow-600/25 hover:bg-yellow-500 transform hover:-translate-y-0.5 transition-all duration-200"
+                                className="bg-[#3F0E40] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap shadow-lg hover:shadow-[#3F0E40]/25 hover:bg-[#3F0E40] transform hover:-translate-y-0.5 transition-all duration-200"
                                 onClick={() => navigate("/create-order")}
                             >
                                 <ShoppingCart size={16}/> Place Order
@@ -183,45 +181,6 @@ const SalesOrders = () => {
                     </div>
                 </div>
 
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                    <div className="bg-white rounded-xl p-4 sm:p-5 border-l-4 border-l-[#3F0E40] shadow-sm hover:shadow-md transition-all duration-200 hover:border-l-yellow-600">
-                        <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Revenue</p>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-black text-green-900 truncate">₦{totalRevenue.toLocaleString()}</p>
-                                <p className="text-xs text-slate-400 mt-1">From {totalOrders} orders</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-[#3F0E40]/10 to-green-900/10 p-2 sm:p-3 rounded-xl flex-shrink-0 ml-3">
-                                <TrendingUp size={20} className="text-[#3F0E40]" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-4 sm:p-5 border-l-4 border-l-green-900 shadow-sm hover:shadow-md transition-all duration-200 hover:border-l-yellow-600">
-                        <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Orders</p>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-black text-[#3F0E40]">{totalOrders}</p>
-                                <p className="text-xs text-slate-400 mt-1">All time orders</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-green-900/10 to-[#3F0E40]/10 p-2 sm:p-3 rounded-xl flex-shrink-0 ml-3">
-                                <Package size={20} className="text-green-900" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-4 sm:p-5 border-l-4 border-l-yellow-600 shadow-sm hover:shadow-md transition-all duration-200 sm:col-span-2 lg:col-span-1">
-                        <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Items Sold</p>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-black text-green-900">{totalItems}</p>
-                                <p className="text-xs text-slate-400 mt-1">Total quantity</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-yellow-600/10 to-[#3F0E40]/10 p-2 sm:p-3 rounded-xl flex-shrink-0 ml-3">
-                                <Users size={20} className="text-yellow-600" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Table Section */}
                 <div className="bg-white rounded-xl border shadow-sm overflow-hidden orders-table-container">
@@ -242,7 +201,7 @@ const SalesOrders = () => {
                             <div className="flex items-center gap-2">
                                 <Filter size={14} className="text-[#3F0E40]/60" />
                                 <select 
-                                    className="text-sm border rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 outline-none cursor-pointer bg-white hover:border-yellow-600 focus:border-yellow-600 transition-colors"
+                                    className="text-sm border rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 outline-none cursor-pointer bg-white hover:border-[#3F0E40] focus:border-[#3F0E40] transition-colors"
                                     value={dateFilter}
                                     onChange={(e) => setDateFilter(e.target.value)}
                                 >
@@ -272,7 +231,7 @@ const SalesOrders = () => {
                                     paginatedSales.map((sale, index) => (
                                         <tr 
                                             key={sale.orderId} 
-                                            className="border-b border-slate-100 hover:bg-gradient-to-r hover:from-yellow-600/5 hover:to-transparent transition-all duration-200"
+                                            className="border-b border-slate-100 hover:bg-gradient-to-r hover:from-[#3F0E40]/5 hover:to-transparent transition-all duration-200"
                                             style={{ animationDelay: `${index * 50}ms` }}
                                         >
                                             <td className="p-4">
@@ -291,7 +250,7 @@ const SalesOrders = () => {
                                             </td>
                                             <td className="p-4">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3F0E40] to-green-900 flex items-center justify-center shadow-sm flex-shrink-0">
+                                                    <div className="w-8 h-8 rounded-full bg-[#8D5D93] flex items-center justify-center shadow-sm flex-shrink-0">
                                                         <span className="text-xs font-bold text-white">
                                                             {sale.customer?.charAt(0).toUpperCase()}
                                                         </span>
@@ -300,7 +259,7 @@ const SalesOrders = () => {
                                                 </div>
                                             </td>
                                             <td className="p-4 text-center">
-                                                <span className="font-bold text-green-900 bg-green-900/5 px-3 py-1 rounded-full text-xs border border-green-900/10 whitespace-nowrap">
+                                                <span className="font-bold text-[#3F0E40] bg-[#3F0E40]/5 px-3 py-1 rounded-full text-xs border border-green-900/10 whitespace-nowrap">
                                                     {sale.qty} items
                                                 </span>
                                             </td>
@@ -312,7 +271,7 @@ const SalesOrders = () => {
                                             <td className="p-4">
                                                 <button 
                                                     onClick={() => setSelectedInvoice(sale)}
-                                                    className="group relative inline-flex items-center gap-2 text-[#3F0E40] font-bold hover:text-yellow-600 transition-all duration-200"
+                                                    className="group relative inline-flex items-center gap-2 text-[#8D5D93] font-bold hover:text-[#3F0E40] transition-all duration-200"
                                                 >
                                                     <span className="absolute inset-0 bg-yellow-600/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200 -z-10"></span>
                                                     <Eye size={16} className="group-hover:scale-110 transition-transform" /> 
@@ -439,7 +398,7 @@ const SalesOrders = () => {
                                                     onClick={() => handlePageChange(page)}
                                                     className={`min-w-[36px] h-9 px-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                                                         currentPage === page
-                                                            ? 'bg-gradient-to-r from-[#3F0E40] to-green-900 text-white shadow-md'
+                                                            ? 'bg-[#3F0E40] text-white shadow-md'
                                                             : 'text-[#3F0E40] hover:bg-[#3F0E40]/5'
                                                     }`}
                                                 >
@@ -488,7 +447,7 @@ const SalesOrders = () => {
                                     onClick={() => setGraphPeriod(t)}
                                     className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition-all duration-200 ${
                                         graphPeriod === t 
-                                            ? 'bg-gradient-to-r from-[#3F0E40] to-green-900 text-white shadow-md' 
+                                            ? 'bg-[#3F0E40] text-white shadow-md' 
                                             : 'text-[#3F0E40] hover:bg-[#3F0E40]/10'
                                     }`}
                                 >
@@ -503,9 +462,9 @@ const SalesOrders = () => {
                                 <AreaChart data={graphData}>
                                     <defs>
                                         <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#3F0E40" stopOpacity={0.2}/>
-                                            <stop offset="50%" stopColor="#14532d" stopOpacity={0.15}/>
-                                            <stop offset="95%" stopColor="#ca8a04" stopOpacity={0.05}/>
+                                            <stop offset="5%" stopColor="#8D5D93" stopOpacity={0.2}/>
+                                            <stop offset="50%" stopColor="#8D5D93" stopOpacity={0.15}/>
+                                            <stop offset="95%" stopColor="#8D5D93" stopOpacity={0.05}/>
                                         </linearGradient>
                                     </defs>
                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
@@ -539,8 +498,8 @@ const SalesOrders = () => {
                                         stroke="#3F0E40" 
                                         strokeWidth={2.5}
                                         fill="url(#colorTotal)" 
-                                        dot={{ fill: '#ca8a04', strokeWidth: 2, r: 3, stroke: '#3F0E40' }}
-                                        activeDot={{ r: 5, fill: '#ca8a04', stroke: '#3F0E40', strokeWidth: 2 }}
+                                        dot={{ fill: '#ffffff', strokeWidth: 2, r: 3, stroke: '#3F0E40' }}
+                                        activeDot={{ r: 5, fill: '#ffffff', stroke: '#3F0E40', strokeWidth: 2 }}
                                     />
                                 </AreaChart>
                             </ResponsiveContainer>
@@ -557,9 +516,8 @@ const SalesOrders = () => {
                 {selectedInvoice && (
                     <div className="fixed inset-0 bg-[#3F0E40]/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
                         <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform scale-100 animate-in zoom-in-95 duration-200 border-2 border-[#3F0E40]/10 max-h-[90vh] overflow-y-auto">
-                            <div className="bg-gradient-to-br from-[#3F0E40] to-green-900 p-5 sm:p-6 text-white relative overflow-hidden">
-                                <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-600/20 rounded-full blur-2xl"></div>
+                            <div className="bg-[#8D5D93] p-5 sm:p-6 text-white relative overflow-hidden">
+                                
                                 <div className="relative z-10 flex justify-between items-start">
                                     <div>
                                         <h2 className="text-lg sm:text-xl font-bold mb-1">Order Invoice</h2>
@@ -586,7 +544,7 @@ const SalesOrders = () => {
                                         <div className="text-right">
                                             <p className="text-[#3F0E40]/60 text-[10px] uppercase font-bold tracking-wider mb-1">Date & Time</p>
                                             <p className="font-bold text-green-900 text-xs sm:text-sm">
-                                                {selectedInvoice.date} <span className="text-yellow-600 mx-1">•</span> {selectedInvoice.time}
+                                                {selectedInvoice.date} <span className="text-[#3F0E40] mx-1">•</span> {selectedInvoice.time}
                                             </p>
                                         </div>
                                     </div>
@@ -601,7 +559,7 @@ const SalesOrders = () => {
                                     <div className="max-h-52 sm:max-h-60 overflow-y-auto space-y-2 sm:space-y-3 pr-2 custom-scrollbar">
                                         {selectedInvoice.details && selectedInvoice.details.length > 0 ? (
                                             selectedInvoice.details.map((item, idx) => (
-                                                <div key={idx} className="flex justify-between items-center text-sm p-2.5 sm:p-3 bg-gradient-to-r from-[#3F0E40]/5 to-transparent rounded-lg hover:from-yellow-600/10 transition-colors border border-[#3F0E40]/5">
+                                                <div key={idx} className="flex justify-between items-center text-sm p-2.5 sm:p-3 bg-gradient-to-r from-[#3F0E40]/5 to-transparent rounded-lg hover:from-[#8D5D93]/10 transition-colors border border-[#3F0E40]/5">
                                                     <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                                                         <span className="font-bold text-green-900 bg-green-900/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-xs border border-green-900/20 flex-shrink-0">
                                                             {item.quantity}x
@@ -621,11 +579,11 @@ const SalesOrders = () => {
                                     </div>
                                 </div>
 
-                                <div className="border-t-2 border-t-yellow-600/20 pt-4 mt-2">
-                                    <div className="bg-gradient-to-r from-[#3F0E40] to-green-900 rounded-xl p-4 sm:p-5 -mx-2 shadow-lg">
+                                <div className="border-t-2 border-t-[#3F0E40]/20 pt-4 mt-2">
+                                    <div className="bg-[#8D5D93] rounded-xl p-4 sm:p-5 -mx-2 shadow-lg">
                                         <div className="flex justify-between items-center">
                                             <div>
-                                                <p className="text-yellow-600 text-xs font-bold uppercase tracking-wider mb-1">Total Amount</p>
+                                                <p className="text-white text-xs font-bold uppercase tracking-wider mb-1">Total Amount</p>
                                                 <p className="text-xs text-white/80">{selectedInvoice.qty} Items Total</p>
                                             </div>
                                             <span className="text-2xl sm:text-3xl font-black text-white">
@@ -637,7 +595,7 @@ const SalesOrders = () => {
 
                                 <button 
                                     onClick={() => setSelectedInvoice(null)} 
-                                    className="w-full bg-[#3F0E40] text-white py-3 sm:py-3.5 rounded-xl font-bold hover:bg-green-900 transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5 border border-[#3F0E40] text-sm sm:text-base"
+                                    className="w-full bg-[#3F0E40] text-white py-3 sm:py-3.5 rounded-xl font-bold hover:bg-[#3F0E40] transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5 border border-[#3F0E40] text-sm sm:text-base"
                                 >
                                     Close Receipt
                                 </button>

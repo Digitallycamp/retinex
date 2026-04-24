@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { db } from '../../../core/firebase/firebase';
 import { collection, getDocs, doc, updateDoc, increment  } from "firebase/firestore";
 import { Search, Plus, Minus, Trash2, ShoppingCart, X, Package, TrendingUp, Calendar, Filter, User, Receipt, AlertCircle, ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
-import { useOrders } from '../../../../context/OrderContext'; 
+import { useOrders } from '../../../../context/OrderContext';
+import Header from '../components/Header'; 
 
 
 const CreateOrder = () => {
@@ -215,25 +216,11 @@ const CreateOrder = () => {
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6 w-full max-w-full">
                 {/* Page Header */}
-                <div className="relative overflow-hidden rounded-xl border sm:rounded-2xl  p-4 sm:p-6 lg:p-8 shadow-xl">
-                    
-                    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
-                        <div>
-                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-1">Create New Order</h1>
-                            <p className="text-black/80 text-xs sm:text-sm lg:text-base">Add products and generate transaction receipt</p>
-                        </div>
-                        <div className="flex items-center gap-3 w-full lg:w-auto">
-                            <div className="bg-black/10 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-xl border border-black/20 flex-1 lg:flex-none">
-                                <div className="flex items-center gap-2">
-                                    <Calendar size={14} className="text-[#3F0E40] flex-shrink-0" />
-                                    <span className="text-black text-xs sm:text-sm font-medium truncate">
-                                        {new Date().toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <Header 
+                      title="Create New Order"
+                      description="Add products and generate transaction receipt"
+                      showDate={true}
+                    />
 
                 {/* Main Content */}
                 <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 w-full">

@@ -2,10 +2,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
     Search, Plus, X, User, Building2, Mail, Phone, MapPin, 
     CreditCard, StickyNote, Eye, ChevronLeft, ChevronRight,
-    Package, Users, Store, AlertCircle, CheckCircle
+    Package, Users, Store, AlertCircle, CheckCircle,
+    PlusCircle
 } from 'lucide-react';
 import { db } from '../../../core/firebase/firebase';
 import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore";
+import Header from '../components/Header';
 
 const Suppliers = () => {
     const [suppliers, setSuppliers] = useState([]);
@@ -252,62 +254,19 @@ const Suppliers = () => {
                 )}
 
                 {/* Page Header */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3F0E40] via-[#3F0E40]/95 to-green-900 p-4 sm:p-6 lg:p-8 shadow-xl">
-                    <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:20px_20px]"></div>
-                    <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-yellow-600/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-36 sm:w-48 h-36 sm:h-48 bg-green-900/20 rounded-full blur-3xl"></div>
-                    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
-                        <div>
-                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">Suppliers</h1>
-                            <p className="text-white/80 text-xs sm:text-sm lg:text-base">Manage your supplier relationships and information</p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full lg:w-auto">
-                            <div className="relative flex-1 lg:flex-none">
-                                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-white/60" size={16} />
-                                <input 
-                                    className="w-full lg:w-64 xl:w-72 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-sm outline-none placeholder:text-white/60 text-white focus:bg-white/20 focus:border-yellow-600/50 transition-all"
-                                    placeholder="Search by name, company or location..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                            </div>
-                            <button 
-                                className="bg-yellow-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap shadow-lg hover:shadow-yellow-600/25 hover:bg-yellow-500 transform hover:-translate-y-0.5 transition-all duration-200"
-                                onClick={openAddModal}
-                            >
-                                <Plus size={16}/> Add Supplier
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                 <Header 
+                    title="Suppliers"
+                    description="Manage your supplier relationships and information"
+                    showSearch={true}
+                    showButton={true}
+                    searchValue={searchTerm}
+                    onSearchChange={(e) => setSearchTerm(e.target.value)}
+                    searchPlaceholder="Search by name, company or location..."
+                    buttonText="Add Supplier"
+                    ButtonIcon={Plus}
+                    onButtonClick={openAddModal}
+                />
 
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div className="bg-white rounded-xl p-4 sm:p-5 border-l-4 border-l-[#3F0E40] shadow-sm hover:shadow-md transition-all duration-200 hover:border-l-yellow-600">
-                        <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Suppliers</p>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-black text-green-900">{totalSuppliers}</p>
-                                <p className="text-xs text-slate-400 mt-1">Active partnerships</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-[#3F0E40]/10 to-green-900/10 p-2 sm:p-3 rounded-xl flex-shrink-0 ml-3">
-                                <Users size={20} className="text-[#3F0E40]" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-4 sm:p-5 border-l-4 border-l-green-900 shadow-sm hover:shadow-md transition-all duration-200 hover:border-l-yellow-600">
-                        <div className="flex items-center justify-between">
-                            <div className="min-w-0 flex-1">
-                                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Companies</p>
-                                <p className="text-xl sm:text-2xl lg:text-3xl font-black text-[#3F0E40]">{uniqueCompanies}</p>
-                                <p className="text-xs text-slate-400 mt-1">Unique organizations</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-green-900/10 to-[#3F0E40]/10 p-2 sm:p-3 rounded-xl flex-shrink-0 ml-3">
-                                <Building2 size={20} className="text-green-900" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Table Section */}
                 <div className="bg-white rounded-xl border shadow-sm overflow-hidden suppliers-table-container">
@@ -345,7 +304,7 @@ const Suppliers = () => {
                                     paginatedSuppliers.map((supplier, index) => (
                                         <tr 
                                             key={supplier.id} 
-                                            className="border-b border-slate-100 hover:bg-gradient-to-r hover:from-yellow-600/5 hover:to-transparent transition-all duration-200"
+                                            className="border-b border-slate-100 hover:bg-gradient-to-r hover:from-[#3F0E40]/5 hover:to-transparent transition-all duration-200"
                                             style={{ animationDelay: `${index * 50}ms` }}
                                         >
                                             <td className="p-4">
@@ -377,7 +336,7 @@ const Suppliers = () => {
                                             <td className="p-4 text-center">
                                                 <button 
                                                     onClick={() => openEditModal(supplier)}
-                                                    className="group relative inline-flex items-center gap-2 text-[#3F0E40] font-bold hover:text-yellow-600 transition-all duration-200 mx-auto"
+                                                    className="group relative inline-flex items-center gap-2 text-[#8D5D93] font-bold hover:text-[#3F0E40] transition-all duration-200 mx-auto"
                                                 >
                                                     <span className="absolute inset-0 bg-yellow-600/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200 -z-10"></span>
                                                     <Eye size={16} className="group-hover:scale-110 transition-transform" /> 
@@ -408,7 +367,7 @@ const Suppliers = () => {
                         {paginatedSuppliers.length > 0 ? (
                             <div className="divide-y">
                                 {paginatedSuppliers.map((supplier) => (
-                                    <div key={supplier.id} className="p-4 space-y-3 hover:bg-gradient-to-r hover:from-yellow-600/5 hover:to-transparent transition-all duration-200">
+                                    <div key={supplier.id} className="p-4 space-y-3 hover:bg-gradient-to-r hover:from-[#3F0E40]/5 hover:to-transparent transition-all duration-200">
                                         <div className="flex items-start justify-between gap-3">
                                             <div className="flex items-center gap-3 min-w-0 flex-1">
                                                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#3F0E40]/10 to-green-900/10 flex items-center justify-center flex-shrink-0">
@@ -438,7 +397,7 @@ const Suppliers = () => {
                                         <div className="flex justify-end pt-2">
                                             <button 
                                                 onClick={() => openEditModal(supplier)}
-                                                className="group relative inline-flex items-center gap-1.5 text-[#3F0E40] font-bold hover:text-yellow-600 transition-all duration-200"
+                                                className="group relative inline-flex items-center gap-1.5 text-[#8D5D93] font-bold hover:text-[#3F0E40] transition-all duration-200"
                                             >
                                                 <Eye size={14} className="group-hover:scale-110 transition-transform" /> 
                                                 <span className="text-xs">View/Edit Profile</span>
@@ -532,9 +491,8 @@ const Suppliers = () => {
                 <div className="fixed inset-0 bg-[#3F0E40]/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
                     <div className="bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden transform scale-100 animate-in zoom-in-95 duration-200 border-2 border-[#3F0E40]/10 max-h-[90vh] overflow-y-auto">
                         {/* Modal Header */}
-                        <div className="bg-gradient-to-br from-[#3F0E40] to-green-900 p-5 sm:p-6 text-white relative overflow-hidden">
-                            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-600/20 rounded-full blur-2xl"></div>
+                        <div className="bg-[#8D5D93] p-5 sm:p-6 text-white relative overflow-hidden">
+                            
                             <div className="relative z-10 flex justify-between items-start">
                                 <div>
                                     <h3 className="text-lg sm:text-xl font-bold mb-1">
@@ -575,7 +533,7 @@ const Suppliers = () => {
                                                 name="supplierName"
                                                 value={formData.supplierName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                 placeholder="John Doe"
                                             />
                                         </div>
@@ -587,7 +545,7 @@ const Suppliers = () => {
                                                 name="companyName"
                                                 value={formData.companyName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                 placeholder="Company Inc."
                                             />
                                         </div>
@@ -605,7 +563,7 @@ const Suppliers = () => {
                                                     type="email"
                                                     value={formData.email}
                                                     onChange={handleInputChange}
-                                                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                     placeholder="supplier@company.com"
                                                 />
                                             </div>
@@ -620,7 +578,7 @@ const Suppliers = () => {
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleInputChange}
-                                                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                     placeholder="+234 123 456 7890"
                                                 />
                                             </div>
@@ -638,7 +596,7 @@ const Suppliers = () => {
                                                 value={formData.address}
                                                 onChange={handleInputChange}
                                                 rows="2"
-                                                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all resize-none"
+                                                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all resize-none"
                                                 placeholder="Full address..."
                                             />
                                         </div>
@@ -660,7 +618,7 @@ const Suppliers = () => {
                                             name="accountHolderName"
                                             value={formData.accountHolderName}
                                             onChange={handleInputChange}
-                                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                             placeholder="John Doe"
                                         />
                                     </div>
@@ -674,7 +632,7 @@ const Suppliers = () => {
                                                 name="accountNumber"
                                                 value={formData.accountNumber}
                                                 onChange={handleInputChange}
-                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                 placeholder="0123456789"
                                             />
                                         </div>
@@ -686,7 +644,7 @@ const Suppliers = () => {
                                                 name="bankName"
                                                 value={formData.bankName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all"
+                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all"
                                                 placeholder="Bank Name"
                                             />
                                         </div>
@@ -706,7 +664,7 @@ const Suppliers = () => {
                                             value={formData.notes}
                                             onChange={handleInputChange}
                                             rows="3"
-                                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-yellow-600 focus:bg-white transition-all resize-none"
+                                            className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-[#3F0E40] focus:bg-white transition-all resize-none"
                                             placeholder="Special instructions, preferred contact methods, warnings..."
                                         />
                                     </div>
@@ -726,7 +684,7 @@ const Suppliers = () => {
                                     </button>
                                     <button 
                                         onClick={handleSaveSupplier}
-                                        className="flex-1 py-3 sm:py-3.5 px-4 bg-gradient-to-r from-[#3F0E40] to-green-900 text-white rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
+                                        className="flex-1 py-3 sm:py-3.5 px-4 bg-[#3F0E40] text-white rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
                                     >
                                         {selectedSupplier ? 'Update Supplier' : 'Add Supplier'}
                                     </button>

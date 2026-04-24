@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search, Eye, ShoppingCart, X, TrendingUp, Package, Users, Calendar, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useOrders } from '../../../../context/OrderContext';
+import Header from '../components/Header';
 
 const SalesOrders = () => {
     const { sales } = useOrders(); 
@@ -154,32 +155,18 @@ const SalesOrders = () => {
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 w-full max-w-full">
                 {/* Enhanced Header with Professional Gradient */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border  p-4 sm:p-6 lg:p-8 shadow-xl">
-                    
-                    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3 sm:gap-4">
-                        <div>
-                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-1">Sales Orders</h1>
-                            <p className="text-black/80 text-xs sm:text-sm lg:text-base">Manage and track your customer orders</p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full lg:w-auto">
-                            <div className="relative flex-1 lg:flex-none">
-                                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-black/60" size={16} />
-                                <input 
-                                    className="w-full lg:w-64 xl:w-72 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-black/10 backdrop-blur-sm border border-black/20 rounded-xl text-sm outline-none placeholder:text-black/60 text-black focus:bg-white/20 focus:border-[#3F0E40]/50 transition-all"
-                                    placeholder="Search Order ID or Customer..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                            </div>
-                            <button 
-                                className="bg-[#3F0E40] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap shadow-lg hover:shadow-[#3F0E40]/25 hover:bg-[#3F0E40] transform hover:-translate-y-0.5 transition-all duration-200"
-                                onClick={() => navigate("/create-order")}
-                            >
-                                <ShoppingCart size={16}/> Place Order
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <Header 
+                    title="Sales Orders"
+                    description="Manage and track your customer orders"
+                    showSearch={true}
+                    showButton={true}
+                    searchValue={searchTerm}
+                    onSearchChange={(e) => setSearchTerm(e.target.value)}
+                    searchPlaceholder="Search Order ID or Customer..."
+                    buttonText="Place Order"
+                    ButtonIcon={ShoppingCart}
+                    onButtonClick={() => navigate("/create-order")}
+                />
 
 
                 {/* Table Section */}
@@ -304,7 +291,7 @@ const SalesOrders = () => {
                                 {paginatedSales.map((sale, index) => (
                                     <div 
                                         key={sale.orderId} 
-                                        className="p-3 sm:p-4 space-y-3 hover:bg-gradient-to-r hover:from-yellow-600/5 hover:to-transparent transition-all duration-200"
+                                        className="p-3 sm:p-4 space-y-3 hover:bg-gradient-to-r hover:from-[#3F0E40]/5 hover:to-transparent transition-all duration-200"
                                     >
                                         {/* Order ID and Total */}
                                         <div className="flex items-start justify-between gap-3">
@@ -340,7 +327,7 @@ const SalesOrders = () => {
                                                 </span>
                                                 <button 
                                                     onClick={() => setSelectedInvoice(sale)}
-                                                    className="group relative inline-flex items-center gap-1.5 text-[#3F0E40] font-bold hover:text-yellow-600 transition-all duration-200"
+                                                    className="group relative inline-flex items-center gap-1.5 text-[#8D5D93] font-bold hover:text-[#3F0E40] transition-all duration-200"
                                                 >
                                                     <Eye size={14} className="group-hover:scale-110 transition-transform" /> 
                                                     <span className="text-xs">View</span>
@@ -512,7 +499,7 @@ const SalesOrders = () => {
                     </div>
                 </div>
 
-                {/* Enhanced Invoice Modal */}
+                {/* Invoice Modal */}
                 {selectedInvoice && (
                     <div className="fixed inset-0 bg-[#3F0E40]/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
                         <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform scale-100 animate-in zoom-in-95 duration-200 border-2 border-[#3F0E40]/10 max-h-[90vh] overflow-y-auto">
@@ -580,13 +567,13 @@ const SalesOrders = () => {
                                 </div>
 
                                 <div className="border-t-2 border-t-[#3F0E40]/20 pt-4 mt-2">
-                                    <div className="bg-[#8D5D93] rounded-xl p-4 sm:p-5 -mx-2 shadow-lg">
+                                    <div className="bg-[#8D5D93]/5 rounded-xl border  border-[#8D5D93]/70 p-4 sm:p-5 -mx-2 shadow-lg">
                                         <div className="flex justify-between items-center">
                                             <div>
-                                                <p className="text-white text-xs font-bold uppercase tracking-wider mb-1">Total Amount</p>
-                                                <p className="text-xs text-white/80">{selectedInvoice.qty} Items Total</p>
+                                                <p className="text-black text-xs font-bold uppercase tracking-wider mb-1">Total Amount</p>
+                                                <p className="text-xs text-black/80">{selectedInvoice.qty} Items Total</p>
                                             </div>
-                                            <span className="text-2xl sm:text-3xl font-black text-white">
+                                            <span className="text-2xl sm:text-3xl font-black text-black">
                                                 ₦{selectedInvoice.total.toLocaleString()}
                                             </span>
                                         </div>

@@ -38,7 +38,7 @@ const navSections = [
 		items: [
 			{ label: 'Create Order', icon: ShoppingCart, link: 'create-order' },
 			{ label: 'Add Product', icon: PlusCircle, link: 'add-inventory' },
-			{ label: 'Add Supplier', icon: Van, link: 'suppliers' },
+			{ label: 'Add Supplier', icon: Van, link: 'template' },
 		],
 	},
 	{

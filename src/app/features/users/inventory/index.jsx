@@ -38,11 +38,11 @@ const FunctionalInventory = () => {
   // Helper for status styling
   const getStatus = (stock) => {
     if (stock > 100) {
-      return { label: 'In Stock', color: 'bg-gradient-to-r from-green-500 to-emerald-600', text: 'text-green-700', bg: 'bg-green-100', width: 'w-3/4' };
+      return { label: 'In Stock', color: '#059669', bg: '#D1FAE5', width: '75%' };
     } else if (stock >= 60 && stock <= 100) {
-      return { label: 'Medium Stock', color: 'bg-gradient-to-r from-yellow-500 to-amber-600', text: 'text-yellow-700', bg: 'bg-yellow-100', width: 'w-1/2' };
+      return { label: 'Medium Stock', color: '#CA8A04', bg: '#FEF3C7', width: '50%' };
     }
-    return { label: 'Low Stock', color: 'bg-gradient-to-r from-red-500 to-rose-600', text: 'text-red-700', bg: 'bg-red-100', width: 'w-1/4' };
+    return { label: 'Low Stock', color: '#DC2626', bg: '#FEE2E2', width: '25%' };
   };
 
   // Edit functionality with Firebase
@@ -141,7 +141,7 @@ const FunctionalInventory = () => {
     <>
       <div className="max-w-6xl mx-auto">
         
-        {/* Header Section with Gradient */}
+        {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -151,39 +151,22 @@ const FunctionalInventory = () => {
           <div>
             <h1 className="text-2xl font-bold mb-2" style={{ 
               fontFamily: "'DM Sans', sans-serif",
-              background: 'linear-gradient(135deg, #3F0E40 0%, #9D4EDD 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
+              color: '#3F0E40'
             }}>
               Inventory Management
             </h1>
-            <p className="text-gray-600">Manage and track your product inventory</p>
+            <p className="text-gray-500">Manage and track your product inventory</p>
           </div>
-          {/* <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowAddModal(true)}
-            className="text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-all shadow-md"
-            style={{ 
-              background: 'linear-gradient(135deg, #3F0E40 0%, #CA8A04 100%)',
-            }}
-          >
-            <Plus size={20} /> Add Product
-          </motion.button> */}
         </motion.div>
 
-        {/* Functional Header with enhanced UI */}
+        {/* Functional Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden border border-gray-100"
-          style={{ backdropFilter: 'blur(10px)' }}
+          className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
         >
-          <div className="p-5 flex flex-col sm:flex-row gap-4 justify-between items-center border-b border-gray-100" style={{ 
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,243,255,0.95) 100%)'
-          }}>
+          <div className="p-5 flex flex-col sm:flex-row gap-4 justify-between items-center border-b border-gray-100 bg-white">
             <div className="relative w-full sm:max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input
@@ -218,13 +201,11 @@ const FunctionalInventory = () => {
             </div>
           </div>
 
-          {/* Stats Summary with Gradient */}
-          <div className="px-5 py-3 border-b border-gray-100" style={{ 
-            background: 'linear-gradient(135deg, rgba(63,14,64,0.05) 0%, rgba(202,138,4,0.05) 50%, rgba(5,150,105,0.05) 100%)'
-          }}>
+          {/* Stats Summary */}
+          <div className="px-5 py-3 border-b border-gray-100 bg-gray-50">
             <div className="flex gap-6 text-sm">
               <span className="text-gray-600">Total Products: <span className="font-bold" style={{ color: '#3F0E40' }}>{filteredProducts.length}</span></span>
-              <span className="text-gray-600">Categories: <span className="font-bold text-yellow-600">{categories.length - 1}</span></span>
+              <span className="text-gray-600">Categories: <span className="font-bold" style={{ color: '#CA8A04' }}>{categories.length - 1}</span></span>
             </div>
           </div>
 
@@ -255,37 +236,33 @@ const FunctionalInventory = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="border border-gray-100 rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300"
-                    style={{ 
-                      background: 'linear-gradient(135deg, #ffffff 0%, #faf5ff 100%)',
-                    }}
+                    className="border border-gray-100 rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 bg-white"
                   >
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-800 text-lg">{product.name}</h3>
                         <p className="text-sm text-gray-500 mt-0.5">{product.category}</p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${status.bg} ${status.text}`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold`} style={{ backgroundColor: status.bg, color: status.color }}>
                         {status.label}
                       </span>
                     </div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold text-gray-600">Stock: {product.stock} units</span>
                       <div className="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div className={`h-full ${status.color} rounded-full transition-all duration-300`} style={{ width: status.width === 'w-3/4' ? '75%' : status.width === 'w-1/2' ? '50%' : '25%' }}></div>
+                        <div className={`h-full rounded-full transition-all duration-300`} style={{ width: status.width, backgroundColor: status.color }}></div>
                       </div>
                     </div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-sm font-semibold text-gray-600">Price:</span>
-                      <span className="text-base font-bold text-yellow-600">₦{product.price}</span>
+                      <span className="text-base font-bold" style={{ color: '#CA8A04' }}>₦{product.price}</span>
                     </div>
                     <div className="flex gap-3">
                       <motion.button 
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => handleEdit(product)}
-                        className="flex-1 py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2 text-black border-2 border-black border-[0.5px] "
-                        // style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' , }}
+                        className="flex-1 py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2 text-gray-700 border border-gray-300 bg-white hover:bg-gray-50"
                       >
                         <Edit2 size={16} /> Edit
                       </motion.button>
@@ -294,7 +271,7 @@ const FunctionalInventory = () => {
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setShowDeleteConfirm(product.id)}
                         className="flex-1 text-white py-2.5 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2"
-                        style={{ background: 'purple' }}
+                        style={{ background: '#3F0E40' }}
                       >
                         <Trash2 size={16} /> Delete
                       </motion.button>
@@ -309,7 +286,7 @@ const FunctionalInventory = () => {
           <div className={`hidden md:block overflow-x-auto ${filteredProducts.length === 0 ? 'hidden' : ''}`}>
             <table className="w-full text-left">
               <thead>
-                <tr  className="text-white relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3F0E40] via-[#3F0E40]/95 to-green-900 p-4 sm:p-6 lg:p-8 shadow-xl">
+                <tr style={{ background: '#3F0E40' }} className="text-white">
                   <th className="p-4 font-bold uppercase text-xs tracking-wider rounded-tl-lg">Product Name</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider">Category</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider text-center">Current Stock</th>
@@ -327,27 +304,25 @@ const FunctionalInventory = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.02 }}
-                      className={`transition-all duration-200 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'}`}
-                      whileHover={{ 
-                        background: 'linear-gradient(90deg, rgba(202,138,4,0.05), rgba(63,14,64,0.05))',
-                      }}
+                      className={`transition-all duration-200 ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+                      
                     >
                       <td className="p-4 font-semibold text-gray-800">{product.name}</td>
                       <td className="p-4 text-gray-600">{product.category}</td>
                       <td className="p-4 text-center">
-                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-bold shadow-sm border-b-linear-gradient(135deg, #D1FAE5, #A7F3D0) text-black  border-[0.5px]" style={{ color: '#065F46' }}>
+                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-bold" style={{ backgroundColor: status.bg, color: status.color }}>
                           {product.stock} units
                         </span>
                       </td>
                       <td className="p-4 text-center">
-                        <span className="text-base font-bold text-black-600">₦{product.price}</span>
+                        <span className="text-base font-bold" style={{ color: '#CA8A04' }}>₦{product.price}</span>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           <div className="w-32 h-2.5 bg-gray-200 rounded-full overflow-hidden">
-                            <div className={`h-full ${status.color} rounded-full transition-all duration-300`} style={{ width: status.width === 'w-3/4' ? '75%' : status.width === 'w-1/2' ? '50%' : '25%' }}></div>
+                            <div className={`h-full rounded-full transition-all duration-300`} style={{ width: status.width, backgroundColor: status.color }}></div>
                           </div>
-                          <span className={`px-3 py-1 rounded-full text-[10px] font-bold ${status.bg} ${status.text}`}>
+                          <span className={`px-3 py-1 rounded-full text-[10px] font-bold`} style={{ backgroundColor: status.bg, color: status.color }}>
                             {status.label}
                           </span>
                         </div>
@@ -358,8 +333,7 @@ const FunctionalInventory = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => handleEdit(product)}
-                            className="text-black px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2 border-2 border-black border-[0.5px] "
-                            // style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' }}
+                            className="text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2 border border-gray-300 bg-white hover:bg-gray-50"
                           >
                             <Edit2 size={14} /> Edit
                           </motion.button>
@@ -368,7 +342,7 @@ const FunctionalInventory = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setShowDeleteConfirm(product.id)}
                             className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm flex items-center gap-2"
-                            style={{ background: 'purple' }}
+                            style={{ background: '#3F0E40' }}
                           >
                             <Trash2 size={14} /> Delete
                           </motion.button>
@@ -398,15 +372,9 @@ const FunctionalInventory = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6"
-              style={{ background: 'linear-gradient(135deg, #ffffff 0%, #faf5ff 100%)' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="text-xl font-bold mb-4" style={{ 
-                background: 'linear-gradient(135deg, #3F0E40, #CA8A04)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Edit Product</h2>
+              <h2 className="text-xl font-bold mb-4" style={{ color: '#3F0E40' }}>Edit Product</h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
@@ -458,7 +426,7 @@ const FunctionalInventory = () => {
                     onClick={handleSaveEdit}
                     disabled={isEditing}
                     className="flex-1 px-4 py-2 text-white rounded-lg hover:shadow-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ background: 'linear-gradient(135deg, #CA8A04, #A16207)' }}
+                    style={{ background: '#CA8A04' }}
                   >
                     {isEditing ? 'Saving...' : 'Save Changes'}
                   </button>
@@ -469,7 +437,88 @@ const FunctionalInventory = () => {
         )}
       </AnimatePresence>
 
-      
+      {/* Add Product Modal */}
+      <AnimatePresence>
+        {showAddModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setShowAddModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-xl font-bold mb-4" style={{ color: '#3F0E40' }}>Add New Product</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
+                  <input
+                    type="text"
+                    value={addForm.name}
+                    onChange={(e) => setAddForm({...addForm, name: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    placeholder="Enter product name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                  <select
+                    value={addForm.category}
+                    onChange={(e) => setAddForm({...addForm, category: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                  >
+                    <option value="Offices Supplies">Offices Supplies</option>
+                    <option value="Office Supplies">Office Supplies</option>
+                    <option value="Storage">Storage</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Stock Quantity *</label>
+                  <input
+                    type="number"
+                    value={addForm.stock}
+                    onChange={(e) => setAddForm({...addForm, stock: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    placeholder="Enter stock quantity"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Price (₦)</label>
+                  <input
+                    type="number"
+                    value={addForm.price}
+                    onChange={(e) => setAddForm({...addForm, price: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    placeholder="Enter price"
+                  />
+                </div>
+                <div className="flex gap-3 pt-4">
+                  <button
+                    onClick={() => setShowAddModal(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleAddProduct}
+                    disabled={isAdding}
+                    className="flex-1 px-4 py-2 text-white rounded-lg hover:shadow-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ background: '#3F0E40' }}
+                  >
+                    {isAdding ? 'Adding...' : 'Add Product'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Delete Confirmation Modal */}
       <AnimatePresence>
@@ -489,7 +538,7 @@ const FunctionalInventory = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, #FEE2E2, #FECACA)' }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-red-100">
                   <Trash2 size={32} className="text-red-600" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-800 mb-2">Delete Product?</h2>
@@ -505,7 +554,7 @@ const FunctionalInventory = () => {
                     onClick={() => handleDelete(showDeleteConfirm)}
                     disabled={isDeleting}
                     className="flex-1 px-4 py-2 text-white rounded-lg hover:shadow-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ background: 'linear-gradient(135deg, #DC2626, #991B1B)' }}
+                    style={{ background: '#DC2626' }}
                   >
                     {isDeleting ? 'Deleting...' : 'Delete'}
                   </button>

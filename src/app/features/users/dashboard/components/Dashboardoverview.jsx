@@ -10,44 +10,41 @@ const stats = [
 		sub: '+12.5% from last month',
 		subIcon: <TrendingUp size={12} />,
 		icon: <DollarSign size={48} strokeWidth={1.2} />,
-		gradient: 'linear-gradient(135deg, #3F0E40 0%, #6B21A5 50%, #9D4EDD 100%)',
-		glow: 'rgba(107,33,165,0.4)',
+		borderColor: '#3F0E40',
 	},
 	{
 		label: 'TOTAL ITEMS',
 		value: '12',
 		sub: 'Active products in inventory',
 		icon: <Package size={48} strokeWidth={1.2} />,
-		gradient: 'linear-gradient(135deg, #064E3B 0%, #059669 50%, #34D399 100%)',
-		glow: 'rgba(5,150,105,0.4)',
+		borderColor: '#3F0E40',
 	},
 	{
 		label: 'CATEGORIES',
 		value: '3',
 		sub: 'Product categories',
 		icon: <LayoutGrid size={48} strokeWidth={1.2} />,
-		gradient: 'linear-gradient(135deg, #854D0E 0%, #CA8A04 50%, #FBBF24 100%)',
-		glow: 'rgba(202,138,4,0.4)',
+		borderColor: '#3F0E40',
 	},
 ];
 
-function StatCard({ label, value, sub, subIcon, icon, gradient, glow, index }) {
+function StatCard({ label, value, sub, subIcon, icon, borderColor, index }) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 18 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.4, delay: index * 0.1, ease: 'easeOut' }}
-			className='relative flex-1 min-w-[180px] rounded-2xl overflow-hidden p-5 cursor-default select-none'
+			className='relative flex-1 min-w-[180px] rounded-2xl p-5 cursor-default select-none bg-white shadow-lg'
 			style={{
-				background: gradient,
-				boxShadow: `0 8px 32px ${glow}`,
+				borderLeft: `4px solid ${borderColor}`,
+				boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
 			}}
-			whileHover={{ scale: 1.02, transition: { duration: 0.2 }, boxShadow: `0 12px 48px ${glow}` }}
+			whileHover={{ scale: 1.02, transition: { duration: 0.2 }, boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
 		>
 			{/* Background icon watermark */}
 			<div
-				className='absolute right-3 top-1/2 -translate-y-1/2 opacity-[0.15] pointer-events-none'
-				style={{ color: 'white' }}
+				className='absolute right-3 top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none'
+				style={{ color: borderColor }}
 			>
 				{icon}
 			</div>
@@ -55,20 +52,20 @@ function StatCard({ label, value, sub, subIcon, icon, gradient, glow, index }) {
 			{/* Content */}
 			<div className='relative z-10 flex flex-col gap-1'>
 				<span
-					className='text-[11px] font-bold tracking-widest text-white/80'
+					className='text-[11px] font-bold tracking-widest text-gray-500'
 					style={{ fontFamily: "'DM Sans', sans-serif" }}
 				>
 					{label}
 				</span>
 
 				<span
-					className='text-3xl font-extrabold text-white leading-tight'
+					className='text-3xl font-extrabold text-gray-800 leading-tight'
 					style={{ fontFamily: "'DM Sans', sans-serif" }}
 				>
 					{value}
 				</span>
 
-				<span className='flex items-center gap-1 text-[12px] text-white/75 mt-0.5'>
+				<span className='flex items-center gap-1 text-[12px] text-gray-500 mt-0.5'>
 					{subIcon && <span className='opacity-90'>{subIcon}</span>}
 					{sub}
 				</span>
@@ -232,7 +229,7 @@ export default function DashboardOverview() {
 					<div className="hidden md:block overflow-x-auto rounded-xl">
 						<table className="w-full text-left">
 							<thead>
-								<tr style={{ background: 'linear-gradient(to right, #147833, #386d7f, #512888)'  }} className="text-white">
+								<tr style={{ background: '#3F0E40'  }} className="text-white">
 									<th className="p-4 font-bold uppercase text-xs tracking-wider rounded-tl-lg">Product Name</th>
 									<th className="p-4 font-bold uppercase text-xs tracking-wider">Category</th>
 									<th className="p-4 font-bold uppercase text-xs tracking-wider text-center">Current Stock</th>
@@ -263,12 +260,12 @@ export default function DashboardOverview() {
 											</td>
 											<td className="p-4 text-center">
 												<span className="text-base font-bold" style={{ color: '#CA8A04' }}>₦{product.price || 50}</span>
-											</td>
+												</td>
 											<td className="p-4 text-center">
 												<span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium shadow-sm" style={{ backgroundColor: '#fee2e2', color: '#991b1b' }}>
 													⚠️ Critical Stock
 												</span>
-											</td>
+												</td>
 										</motion.tr>
 									);
 								})}
@@ -276,7 +273,7 @@ export default function DashboardOverview() {
 									<tr>
 										<td colSpan="5" className="p-10 text-center text-gray-500">
 											No products found in inventory
-										</td>
+											</td>
 									</tr>
 								)}
 							</tbody>

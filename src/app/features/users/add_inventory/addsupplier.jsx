@@ -1,83 +1,69 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Save, Truck, Building, Phone, Mail, MapPin, User, Banknote, FileText, CreditCard } from 'lucide-react';
+import { ArrowLeft, Save, Truck, Building, Phone, Mail, MapPin, User, Banknote, FileText, CreditCard, AlertCircle } from 'lucide-react';
 import { db } from '../../../core/firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
 const AddSupplier = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    supplierName: '',
-    companyName: '',
-    email: '',
-    phone: '',
-    address: '',
-    bankAccountHolder: '',
-    bankAccountNumber: '',
-    bankName: '',
-    additionalNotes: ''
+  
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset
+  } = useForm({
+    defaultValues: {
+      supplierName: '',
+      companyName: '',
+      email: '',
+      phone: '',
+      address: '',
+      bankAccountHolder: '',
+      bankAccountNumber: '',
+      bankName: '',
+      additionalNotes: ''
+    }
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Validation
-    if (!formData.supplierName.trim()) {
-      alert('Please enter supplier name');
-      return;
-    }
-    if (!formData.companyName.trim()) {
-      alert('Please enter company name');
-      return;
-    }
-    if (!formData.email.trim()) {
-      alert('Please enter email address');
-      return;
-    }
-    if (!formData.phone.trim()) {
-      alert('Please enter phone number');
-      return;
-    }
-
+  const onSubmit = async (data) => {
     setLoading(true);
     
     try {
       const supplierData = {
-        ...formData,
-        supplierName: formData.supplierName.trim(),
-        companyName: formData.companyName.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        address: formData.address.trim(),
-        bankAccountHolder: formData.bankAccountHolder.trim(),
-        bankAccountNumber: formData.bankAccountNumber.trim(),
-        bankName: formData.bankName.trim(),
-        additionalNotes: formData.additionalNotes.trim(),
+        ...data,
+        supplierName: data.supplierName.trim(),
+        companyName: data.companyName.trim(),
+        email: data.email.trim(),
+        phone: data.phone.trim(),
+        address: data.address.trim(),
+        bankAccountHolder: data.bankAccountHolder?.trim() || '',
+        bankAccountNumber: data.bankAccountNumber?.trim() || '',
+        bankName: data.bankName?.trim() || '',
+        additionalNotes: data.additionalNotes?.trim() || '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
       
       const docRef = await addDoc(collection(db, 'suppliers'), supplierData);
       
-      alert('Supplier added successfully!');
+      // alert('Supplier added successfully!');
+      reset();
       navigate('/suppliers');
     } catch (error) {
       console.error('Error adding supplier: ', error);
-      alert('Error adding supplier to Firebase. Please try again.');
+      // alert('Error adding supplier to Firebase. Please try again.');
     } finally {
       setLoading(false);
     }
   };
+
+  // Watch form values for preview
+  const watchedValues = watch();
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -128,7 +114,7 @@ const AddSupplier = () => {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="rounded-2xl shadow-lg overflow-hidden border border-gray-100 bg-white"
       >
-        <form onSubmit={handleSubmit} className="p-6 md:p-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
           <div className="space-y-6">
             {/* Basic Information Section */}
             <div className="pb-4 border-b border-gray-200">
@@ -146,13 +132,21 @@ const AddSupplier = () => {
               </label>
               <input
                 type="text"
-                name="supplierName"
-                value={formData.supplierName}
-                onChange={handleInputChange}
+                {...register('supplierName', { 
+                  required: 'Supplier name is required',
+                  minLength: { value: 2, message: 'Supplier name must be at least 2 characters' }
+                })}
                 placeholder="John Doe"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                  errors.supplierName ? 'border-red-500' : 'border-gray-200'
+                }`}
                 autoFocus
               />
+              {errors.supplierName && (
+                <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                  <AlertCircle size={12} /> {errors.supplierName.message}
+                </p>
+              )}
             </div>
 
             {/* Company Name */}
@@ -162,12 +156,20 @@ const AddSupplier = () => {
               </label>
               <input
                 type="text"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleInputChange}
+                {...register('companyName', { 
+                  required: 'Company name is required',
+                  minLength: { value: 2, message: 'Company name must be at least 2 characters' }
+                })}
                 placeholder="Company Inc."
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                  errors.companyName ? 'border-red-500' : 'border-gray-200'
+                }`}
               />
+              {errors.companyName && (
+                <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                  <AlertCircle size={12} /> {errors.companyName.message}
+                </p>
+              )}
             </div>
 
             {/* Email and Phone Row */}
@@ -178,12 +180,23 @@ const AddSupplier = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
+                  {...register('email', { 
+                    required: 'Email is required',
+                    pattern: { 
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 
+                      message: 'Invalid email address' 
+                    }
+                  })}
                   placeholder="supplier@company.com"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                    errors.email ? 'border-red-500' : 'border-gray-200'
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                    <AlertCircle size={12} /> {errors.email.message}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -192,12 +205,20 @@ const AddSupplier = () => {
                 </label>
                 <input
                   type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
+                  {...register('phone', { 
+                    required: 'Phone number is required',
+                    minLength: { value: 10, message: 'Phone number must be at least 10 digits' }
+                  })}
                   placeholder="+234 123 456 7890"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                    errors.phone ? 'border-red-500' : 'border-gray-200'
+                  }`}
                 />
+                {errors.phone && (
+                  <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                    <AlertCircle size={12} /> {errors.phone.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -207,9 +228,7 @@ const AddSupplier = () => {
                 Address
               </label>
               <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
+                {...register('address')}
                 placeholder="Full address..."
                 rows="3"
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white resize-none"
@@ -232,9 +251,7 @@ const AddSupplier = () => {
               </label>
               <input
                 type="text"
-                name="bankAccountHolder"
-                value={formData.bankAccountHolder}
-                onChange={handleInputChange}
+                {...register('bankAccountHolder')}
                 placeholder="John Doe"
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
               />
@@ -248,9 +265,7 @@ const AddSupplier = () => {
                 </label>
                 <input
                   type="text"
-                  name="bankAccountNumber"
-                  value={formData.bankAccountNumber}
-                  onChange={handleInputChange}
+                  {...register('bankAccountNumber')}
                   placeholder="0123456789"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
                 />
@@ -262,9 +277,7 @@ const AddSupplier = () => {
                 </label>
                 <input
                   type="text"
-                  name="bankName"
-                  value={formData.bankName}
-                  onChange={handleInputChange}
+                  {...register('bankName')}
                   placeholder="Bank Name"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
                 />
@@ -283,9 +296,7 @@ const AddSupplier = () => {
             {/* Additional Notes */}
             <div>
               <textarea
-                name="additionalNotes"
-                value={formData.additionalNotes}
-                onChange={handleInputChange}
+                {...register('additionalNotes')}
                 placeholder="Additional notes..."
                 rows="4"
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white resize-none"
@@ -293,7 +304,7 @@ const AddSupplier = () => {
             </div>
 
             {/* Preview Section */}
-            {(formData.supplierName || formData.companyName || formData.email) && (
+            {(watchedValues.supplierName || watchedValues.companyName || watchedValues.email) && (
               <motion.div
                 initial={{ opacity: 0, height: 0, scale: 0.95 }}
                 animate={{ opacity: 1, height: 'auto', scale: 1 }}
@@ -302,17 +313,17 @@ const AddSupplier = () => {
               >
                 <h3 className="text-sm font-semibold mb-3" style={{ color: '#3F0E40' }}>Supplier Preview</h3>
                 <div className="space-y-2 text-sm">
-                  {formData.supplierName && (
-                    <p><span className="font-medium text-gray-600">Supplier:</span> <span className="text-gray-800">{formData.supplierName}</span></p>
+                  {watchedValues.supplierName && (
+                    <p><span className="font-medium text-gray-600">Supplier:</span> <span className="text-gray-800">{watchedValues.supplierName}</span></p>
                   )}
-                  {formData.companyName && (
-                    <p><span className="font-medium text-gray-600">Company:</span> <span className="text-gray-800">{formData.companyName}</span></p>
+                  {watchedValues.companyName && (
+                    <p><span className="font-medium text-gray-600">Company:</span> <span className="text-gray-800">{watchedValues.companyName}</span></p>
                   )}
-                  {formData.email && (
-                    <p><span className="font-medium text-gray-600">Email:</span> <span className="text-gray-800">{formData.email}</span></p>
+                  {watchedValues.email && (
+                    <p><span className="font-medium text-gray-600">Email:</span> <span className="text-gray-800">{watchedValues.email}</span></p>
                   )}
-                  {formData.phone && (
-                    <p><span className="font-medium text-gray-600">Phone:</span> <span className="text-gray-800">{formData.phone}</span></p>
+                  {watchedValues.phone && (
+                    <p><span className="font-medium text-gray-600">Phone:</span> <span className="text-gray-800">{watchedValues.phone}</span></p>
                   )}
                 </div>
               </motion.div>

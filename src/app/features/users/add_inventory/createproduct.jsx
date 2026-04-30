@@ -145,9 +145,7 @@ const ProductForm = () => {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8" style={{ 
-      background: 'radial-gradient(circle at 0% 0%, rgba(63,14,64,0.08) 0%, rgba(202,138,4,0.05) 50%, rgba(6,78,59,0.08) 100%)'
-    }}>
+    
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -390,7 +388,7 @@ const ProductForm = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+
   );
 };
 

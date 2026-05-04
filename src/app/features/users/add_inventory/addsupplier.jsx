@@ -137,7 +137,7 @@ const AddSupplier = () => {
                   minLength: { value: 2, message: 'Supplier name must be at least 2 characters' }
                 })}
                 placeholder="John Doe"
-                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white ${
                   errors.supplierName ? 'border-red-500' : 'border-gray-200'
                 }`}
                 autoFocus
@@ -161,7 +161,7 @@ const AddSupplier = () => {
                   minLength: { value: 2, message: 'Company name must be at least 2 characters' }
                 })}
                 placeholder="Company Inc."
-                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white ${
                   errors.companyName ? 'border-red-500' : 'border-gray-200'
                 }`}
               />
@@ -188,7 +188,7 @@ const AddSupplier = () => {
                     }
                   })}
                   placeholder="supplier@company.com"
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white ${
                     errors.email ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -210,7 +210,7 @@ const AddSupplier = () => {
                     minLength: { value: 10, message: 'Phone number must be at least 10 digits' }
                   })}
                   placeholder="+234 123 456 7890"
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white ${
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white ${
                     errors.phone ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -231,7 +231,7 @@ const AddSupplier = () => {
                 {...register('address')}
                 placeholder="Full address..."
                 rows="3"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white resize-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white resize-none"
               />
             </div>
 
@@ -253,7 +253,7 @@ const AddSupplier = () => {
                 type="text"
                 {...register('bankAccountHolder')}
                 placeholder="John Doe"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
               />
             </div>
 
@@ -267,7 +267,7 @@ const AddSupplier = () => {
                   type="text"
                   {...register('bankAccountNumber')}
                   placeholder="0123456789"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
                 />
               </div>
 
@@ -279,7 +279,7 @@ const AddSupplier = () => {
                   type="text"
                   {...register('bankName')}
                   placeholder="Bank Name"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
                 />
               </div>
             </div>
@@ -299,7 +299,7 @@ const AddSupplier = () => {
                 {...register('additionalNotes')}
                 placeholder="Additional notes..."
                 rows="4"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white resize-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white resize-none"
               />
             </div>
 

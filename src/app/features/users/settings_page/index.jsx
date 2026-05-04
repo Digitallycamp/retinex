@@ -70,7 +70,6 @@ const Settings = () => {
 
 	const handleSaveSettings = async () => {
 		setSaving(true);
-		// Simulate API call
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 		setSuccessMessage('Settings saved successfully!');
 		setTimeout(() => setSuccessMessage(''), 3000);
@@ -91,12 +90,12 @@ const Settings = () => {
 			{/* Avatar Section */}
 			<div className='flex items-center gap-6 pb-6 border-b border-gray-200'>
 				<div className='relative'>
-					<div className='w-24 h-24 bg-gradient-to-br from-green-600 to-yellow-600 rounded-full flex items-center justify-center'>
+					<div className='w-24 h-24 rounded-full flex items-center justify-center' style={{ background: '#3F0E40' }}>
 						<span className='text-3xl font-bold text-white'>
 							{profileSettings.fullName.charAt(0)}
 						</span>
 					</div>
-					<button className='absolute bottom-0 right-0 bg-yellow-600 hover:bg-yellow-700 text-white p-1.5 rounded-full shadow-lg transition-colors'>
+					<button className='absolute bottom-0 right-0 text-white p-1.5 rounded-full shadow-lg transition-colors' style={{ background: '#CA8A04' }}>
 						<Camera size={14} />
 					</button>
 				</div>
@@ -124,7 +123,7 @@ const Settings = () => {
 								fullName: e.target.value,
 							})
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none transition-all bg-white'
 					/>
 				</div>
 				<div>
@@ -137,7 +136,7 @@ const Settings = () => {
 						onChange={(e) =>
 							setProfileSettings({ ...profileSettings, email: e.target.value })
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none transition-all bg-white'
 					/>
 				</div>
 				<div>
@@ -150,7 +149,7 @@ const Settings = () => {
 						onChange={(e) =>
 							setProfileSettings({ ...profileSettings, phone: e.target.value })
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none transition-all bg-white'
 					/>
 				</div>
 				<div>
@@ -165,7 +164,7 @@ const Settings = () => {
 								department: e.target.value,
 							})
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					>
 						<option>Inventory Management</option>
 						<option>Sales</option>
@@ -203,7 +202,7 @@ const Settings = () => {
 							})
 						}
 						className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-							value ? 'bg-yellow-600' : 'bg-gray-300'
+							value ? 'bg-#8D5D93' : 'bg-gray-300'
 						}`}
 					>
 						<span
@@ -230,7 +229,7 @@ const Settings = () => {
 						}
 						className={`p-4 border-2 rounded-lg flex items-center justify-center gap-3 transition-all ${
 							appearanceSettings.theme === 'light'
-								? 'border-yellow-500 bg-yellow-50'
+								? 'border-#8D5D93 bg-#8D5D93'
 								: 'border-gray-200 hover:border-gray-300'
 						}`}
 					>
@@ -238,13 +237,13 @@ const Settings = () => {
 							size={20}
 							className={
 								appearanceSettings.theme === 'light'
-									? 'text-yellow-600'
+									? 'text-#8D5D93'
 									: 'text-gray-500'
 							}
 						/>
 						<span className='font-medium'>Light</span>
 						{appearanceSettings.theme === 'light' && (
-							<Check size={16} className='text-yellow-600 ml-auto' />
+							<Check size={16} className='text-#8D5D93 ml-auto' />
 						)}
 					</button>
 					<button
@@ -253,7 +252,7 @@ const Settings = () => {
 						}
 						className={`p-4 border-2 rounded-lg flex items-center justify-center gap-3 transition-all ${
 							appearanceSettings.theme === 'dark'
-								? 'border-yellow-500 bg-yellow-50'
+								? 'border-#8D5D93 bg-#8D5D93'
 								: 'border-gray-200 hover:border-gray-300'
 						}`}
 					>
@@ -261,13 +260,13 @@ const Settings = () => {
 							size={20}
 							className={
 								appearanceSettings.theme === 'dark'
-									? 'text-yellow-600'
+									? 'text-#8D5D93'
 									: 'text-gray-500'
 							}
 						/>
 						<span className='font-medium'>Dark</span>
 						{appearanceSettings.theme === 'dark' && (
-							<Check size={16} className='text-yellow-600 ml-auto' />
+							<Check size={16} className='text-#8D5D93 ml-auto' />
 						)}
 					</button>
 				</div>
@@ -286,8 +285,8 @@ const Settings = () => {
 							}
 							className={`flex-1 py-2 px-4 rounded-lg border transition-all ${
 								appearanceSettings.fontSize === size
-									? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-									: 'border-gray-300 text-gray-600 hover:border-gray-400'
+									? 'border-#8D5D93 bg-#8D5D93 text-#8D5D93'
+									: 'border-gray-200 text-gray-600 hover:border-gray-300'
 							}`}
 						>
 							{size.charAt(0).toUpperCase() + size.slice(1)}
@@ -311,7 +310,7 @@ const Settings = () => {
 						})
 					}
 					className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-						appearanceSettings.compactView ? 'bg-yellow-600' : 'bg-gray-300'
+						appearanceSettings.compactView ? 'bg-#8D5D93' : 'bg-gray-300'
 					}`}
 				>
 					<span
@@ -337,7 +336,7 @@ const Settings = () => {
 						})
 					}
 					className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-						appearanceSettings.animations ? 'bg-yellow-600' : 'bg-gray-300'
+						appearanceSettings.animations ? 'bg-#8D5D93' : 'bg-gray-300'
 					}`}
 				>
 					<span
@@ -352,11 +351,11 @@ const Settings = () => {
 
 	const renderSecuritySettings = () => (
 		<div className='space-y-6'>
-			<div className='bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4'>
+			<div className='bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4'>
 				<div className='flex items-start gap-3'>
-					<AlertCircle size={20} className='text-blue-600 mt-0.5' />
-					<div className='text-sm text-blue-800'>
-						<p className='font-semibold mb-1'>Security Tips</p>
+					<AlertCircle size={20} className='text-#8D5D93 mt-0.5' />
+					<div className='text-sm text-gray-700'>
+						<p className='font-semibold mb-1' style={{ color: '#3F0E40' }}>Security Tips</p>
 						<p>
 							Use a strong password and enable two-factor authentication for
 							better security.
@@ -372,7 +371,7 @@ const Settings = () => {
 				<input
 					type='password'
 					placeholder='Enter current password'
-					className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+					className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 				/>
 			</div>
 
@@ -384,7 +383,7 @@ const Settings = () => {
 					<input
 						type='password'
 						placeholder='Enter new password'
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					/>
 				</div>
 				<div>
@@ -394,7 +393,7 @@ const Settings = () => {
 					<input
 						type='password'
 						placeholder='Confirm new password'
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					/>
 				</div>
 			</div>
@@ -429,7 +428,7 @@ const Settings = () => {
 										[key]: e.target.value,
 									})
 								}
-								className='px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500'
+								className='px-3 py-1 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 bg-white'
 							>
 								<option value='15'>15 minutes</option>
 								<option value='30'>30 minutes</option>
@@ -442,7 +441,7 @@ const Settings = () => {
 									setSecuritySettings({ ...securitySettings, [key]: !value })
 								}
 								className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-									value ? 'bg-yellow-600' : 'bg-gray-300'
+									value ? 'bg-#8D5D93' : 'bg-gray-300'
 								}`}
 							>
 								<span
@@ -470,9 +469,9 @@ const Settings = () => {
 						onChange={(e) =>
 							setSystemSettings({ ...systemSettings, currency: e.target.value })
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					>
-						<option value='PHP'>Philippine Peso (₱)</option>
+						<option value='PHP'>Nigeria  (₦)</option>
 						<option value='USD'>US Dollar ($)</option>
 						<option value='EUR'>Euro (€)</option>
 					</select>
@@ -486,7 +485,7 @@ const Settings = () => {
 						onChange={(e) =>
 							setSystemSettings({ ...systemSettings, language: e.target.value })
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					>
 						<option value='English'>English</option>
 						<option value='Filipino'>Filipino</option>
@@ -502,7 +501,7 @@ const Settings = () => {
 						onChange={(e) =>
 							setSystemSettings({ ...systemSettings, timezone: e.target.value })
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					>
 						<option value='Asia/Manila'>Asia/Manila (GMT+8)</option>
 						<option value='Asia/Tokyo'>Asia/Tokyo (GMT+9)</option>
@@ -521,7 +520,7 @@ const Settings = () => {
 								dateFormat: e.target.value,
 							})
 						}
-						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none'
+						className='w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#8D5D93 focus:border-#8D5D93 outline-none bg-white'
 					>
 						<option value='MM/DD/YYYY'>MM/DD/YYYY</option>
 						<option value='DD/MM/YYYY'>DD/MM/YYYY</option>
@@ -534,14 +533,14 @@ const Settings = () => {
 
 	const renderDataManagement = () => (
 		<div className='space-y-6'>
-			<div className='bg-yellow-50 border border-yellow-200 rounded-lg p-4'>
+			<div className='bg-gray-50 border border-gray-200 rounded-lg p-4'>
 				<div className='flex items-start gap-3'>
-					<Database size={20} className='text-yellow-600 mt-0.5' />
+					<Database size={20} style={{ color: '#CA8A04' }} className='mt-0.5' />
 					<div>
-						<h4 className='font-semibold text-yellow-800 mb-1'>
+						<h4 className='font-semibold mb-1' style={{ color: '#3F0E40' }}>
 							Data Management
 						</h4>
-						<p className='text-sm text-yellow-700'>
+						<p className='text-sm text-gray-600'>
 							Manage your inventory data and backups
 						</p>
 					</div>
@@ -549,9 +548,9 @@ const Settings = () => {
 			</div>
 
 			<div className='space-y-4'>
-				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-yellow-300 transition-all'>
+				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-#8D5D93 hover:bg-gray-50 transition-all'>
 					<div className='flex items-center gap-3'>
-						<RefreshCw size={20} className='text-green-600' />
+						<RefreshCw size={20} style={{ color: '#059669' }} />
 						<div className='text-left'>
 							<p className='font-medium text-gray-800'>Export Data</p>
 							<p className='text-sm text-gray-500'>
@@ -562,9 +561,9 @@ const Settings = () => {
 					<ChevronRight size={18} className='text-gray-400' />
 				</button>
 
-				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-yellow-300 transition-all'>
+				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-#8D5D93 hover:bg-gray-50 transition-all'>
 					<div className='flex items-center gap-3'>
-						<Database size={20} className='text-blue-600' />
+						<Database size={20} style={{ color: '#3B82F6' }} />
 						<div className='text-left'>
 							<p className='font-medium text-gray-800'>Backup Database</p>
 							<p className='text-sm text-gray-500'>
@@ -575,7 +574,7 @@ const Settings = () => {
 					<ChevronRight size={18} className='text-gray-400' />
 				</button>
 
-				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-red-300 transition-all'>
+				<button className='w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-red-300 hover:bg-red-50 transition-all'>
 					<div className='flex items-center gap-3'>
 						<Trash2 size={20} className='text-red-600' />
 						<div className='text-left'>
@@ -611,22 +610,17 @@ const Settings = () => {
 	};
 
 	return (
-		<div
-			className='min-h-screen p-4 md:p-8'
-			style={{
-				background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)',
-			}}
-		>
+		<div className='min-h-screen p-4 md:p-8 bg-gray-50'>
 			<div className='max-w-7xl mx-auto'>
 				{/* Header */}
 				<div className='mb-8'>
 					<h1
-						className='text-2xl font-bold text-green-900 mb-2'
-						style={{ fontFamily: "'DM Sans', sans-serif" }}
+						className='text-2xl font-bold mb-2'
+						style={{ fontFamily: "'DM Sans', sans-serif", color: '#3F0E40' }}
 					>
 						Settings
 					</h1>
-					<p className='text-gray-600'>
+					<p className='text-gray-500'>
 						Manage your account preferences and system settings
 					</p>
 				</div>
@@ -635,7 +629,7 @@ const Settings = () => {
 					{/* Sidebar */}
 					<div className='lg:w-72'>
 						<div className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 sticky top-8'>
-							<div className='p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white'>
+							<div className='p-4 border-b border-gray-100 bg-white'>
 								<h3 className='font-semibold text-gray-800'>Preferences</h3>
 								<p className='text-xs text-gray-500 mt-1'>
 									Customize your experience
@@ -648,7 +642,7 @@ const Settings = () => {
 										onClick={() => setActiveTab(tab.id)}
 										className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all mb-1 ${
 											activeTab === tab.id
-												? 'bg-yellow-50 text-yellow-700 font-medium'
+												? 'bg-#8D5D93 text-#8D5D93 font-medium'
 												: 'text-gray-600 hover:bg-gray-50'
 										}`}
 									>
@@ -688,8 +682,8 @@ const Settings = () => {
 							transition={{ duration: 0.3 }}
 							className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100'
 						>
-							<div className='p-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white'>
-								<h2 className='text-lg font-semibold text-gray-800'>
+							<div className='p-6 border-b border-gray-100 bg-white'>
+								<h2 className='text-lg font-semibold' style={{ color: '#3F0E40' }}>
 									{tabs.find((t) => t.id === activeTab)?.label} Settings
 								</h2>
 								<p className='text-sm text-gray-500 mt-1'>
@@ -711,7 +705,6 @@ const Settings = () => {
 								<div className='flex gap-3'>
 									<button
 										onClick={() => {
-											// Reset to default logic here
 											setProfileSettings({
 												fullName: 'John Doe',
 												email: 'john.doe@example.com',
@@ -727,7 +720,8 @@ const Settings = () => {
 									<button
 										onClick={handleSaveSettings}
 										disabled={saving}
-										className='px-6 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
+										className='px-6 py-2 text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
+										style={{ background: '#3F0E40' }}
 									>
 										{saving ? (
 											<>

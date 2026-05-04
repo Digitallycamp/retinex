@@ -191,7 +191,7 @@ const ProductForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="Enter product name"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
                 autoFocus
               />
             </div>
@@ -205,7 +205,7 @@ const ProductForm = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
               >
                 <option value="Office Supplies">Office Supplies</option>
                 <option value="Offices Supplies">Offices Supplies</option>
@@ -227,7 +227,7 @@ const ProductForm = () => {
                   onChange={handleInputChange}
                   placeholder="Enter stock quantity"
                   min="0"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
                 />
                 <p className="text-xs text-gray-400 mt-1">Number of units available</p>
               </div>
@@ -245,7 +245,7 @@ const ProductForm = () => {
                   placeholder="Enter price"
                   min="0"
                   step="0.01"
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition-all bg-white"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:#3F0E40 focus:#3F0E40 outline-none transition-all bg-white"
                 />
                 <p className="text-xs text-gray-400 mt-1">Price per unit in Naira</p>
               </div>

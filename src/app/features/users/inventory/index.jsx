@@ -4,6 +4,7 @@ import { Search, X, Edit2, Trash2, Package, Filter, ChevronDown, Plus } from 'lu
 import { useProducts } from './ProductContext';
 import { db } from '../../../core/firebase/firebase';
 import { collection, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import Header from '../components/Header'; 
 
 const FunctionalInventory = () => {
   // Use products from context
@@ -142,22 +143,12 @@ const FunctionalInventory = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 flex justify-between items-center"
-        >
-          <div>
-            <h1 className="text-2xl font-bold mb-2" style={{ 
-              fontFamily: "'DM Sans', sans-serif",
-              color: '#3F0E40'
-            }}>
-              Inventory Management
-            </h1>
-            <p className="text-gray-500">Manage and track your product inventory</p>
-          </div>
-        </motion.div>
+        <Header 
+                      title="Inventory Management"
+                      description="Manage and track your product inventory"
+                      showDate={true}
+                    />
+        
 
         {/* Functional Header */}
         <motion.div 
@@ -174,7 +165,7 @@ const FunctionalInventory = () => {
                 placeholder="Search products by name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none bg-gray-50 transition-all"
+                className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none bg-gray-50 transition-all"
               />
               {searchTerm && (
                 <button 
@@ -191,7 +182,7 @@ const FunctionalInventory = () => {
               <select 
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="w-full pl-10 pr-8 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 bg-white outline-none cursor-pointer appearance-none"
+                className="w-full pl-10 pr-8 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 bg-white outline-none cursor-pointer appearance-none"
               >
                 {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -286,7 +277,7 @@ const FunctionalInventory = () => {
           <div className={`hidden md:block overflow-x-auto ${filteredProducts.length === 0 ? 'hidden' : ''}`}>
             <table className="w-full text-left">
               <thead>
-                <tr style={{ background: '#3F0E40' }} className="text-white">
+                <tr  className="text-#3F0E40 border border-black-200 bg-white hover:bg-gray-50">
                   <th className="p-4 font-bold uppercase text-xs tracking-wider rounded-tl-lg">Product Name</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider">Category</th>
                   <th className="p-4 font-bold uppercase text-xs tracking-wider text-center">Current Stock</th>
@@ -382,7 +373,7 @@ const FunctionalInventory = () => {
                     type="text"
                     value={editForm.name}
                     onChange={(e) => setEditForm({...editForm, name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                   />
                 </div>
                 <div>
@@ -390,7 +381,7 @@ const FunctionalInventory = () => {
                   <select
                     value={editForm.category}
                     onChange={(e) => setEditForm({...editForm, category: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                   >
                     <option value="Offices Supplies">Offices Supplies</option>
                     <option value="Office Supplies">Office Supplies</option>
@@ -403,7 +394,7 @@ const FunctionalInventory = () => {
                     type="number"
                     value={editForm.stock}
                     onChange={(e) => setEditForm({...editForm, stock: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                   />
                 </div>
                 <div>
@@ -412,7 +403,7 @@ const FunctionalInventory = () => {
                     type="number"
                     value={editForm.price}
                     onChange={(e) => setEditForm({...editForm, price: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                   />
                 </div>
                 <div className="flex gap-3 pt-4">
@@ -462,7 +453,7 @@ const FunctionalInventory = () => {
                     type="text"
                     value={addForm.name}
                     onChange={(e) => setAddForm({...addForm, name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                     placeholder="Enter product name"
                   />
                 </div>
@@ -471,7 +462,7 @@ const FunctionalInventory = () => {
                   <select
                     value={addForm.category}
                     onChange={(e) => setAddForm({...addForm, category: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                   >
                     <option value="Offices Supplies">Offices Supplies</option>
                     <option value="Office Supplies">Office Supplies</option>
@@ -484,7 +475,7 @@ const FunctionalInventory = () => {
                     type="number"
                     value={addForm.stock}
                     onChange={(e) => setAddForm({...addForm, stock: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                     placeholder="Enter stock quantity"
                   />
                 </div>
@@ -494,7 +485,7 @@ const FunctionalInventory = () => {
                     type="number"
                     value={addForm.price}
                     onChange={(e) => setAddForm({...addForm, price: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-#3F0E40 focus:border-#3F0E40 outline-none"
                     placeholder="Enter price"
                   />
                 </div>

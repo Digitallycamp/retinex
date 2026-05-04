@@ -139,18 +139,17 @@ export default function DashboardOverview() {
 				transition={{ duration: 0.5, delay: 0.2 }}
 				className="max-w-6xl mx-auto rounded-2xl shadow-2xl overflow-hidden mt-6"
 				style={{ 
-					background: 'linear-gradient(135deg, #ffffff 0%, #faf5ff 50%, #fefce8 100%)',
 					boxShadow: '0 20px 60px rgba(0,0,0,0.1)'
 				}}
 			>
 				<div className="p-4 md:p-8">
-					<div className="flex items-center justify-between mb-6 pb-4 border-b-2" style={{ borderImage: 'linear-gradient(135deg, #3F0E40, #CA8A04) 1' }}>
+					<div className="flex items-center justify-between mb-6 pb-4 border-b-2" style={{ borderColor:'#3F0E40' }}>
 						<div>
 							<h2
 								className='text-xl font-bold'
 								style={{ 
 									fontFamily: "'DM Sans', sans-serif",
-									background: 'linear-gradient(135deg, #3F0E40 0%, #CA8A04 100%)',
+									background: '#3F0E40',
 									WebkitBackgroundClip: 'text',
 									WebkitTextFillColor: 'transparent',
 									backgroundClip: 'text'
@@ -162,8 +161,9 @@ export default function DashboardOverview() {
 								Top {fastMovingProducts.length} selling items with lowest stock - need restocking soon
 							</p>
 						</div>
-						<div className="px-3 py-1 rounded-full text-xs font-bold shadow-md" style={{ 
-							background: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
+						<div className="px-3 py-1 rounded-full text-xs font-bold shadow-md text-#3F0E40 border border-black-200 bg-white hover:bg-gray-50" style={{ 
+							// background: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
+							
 							color: '#854D0E'
 						}}>
 							⚠️ Low Stock Alert
@@ -181,7 +181,6 @@ export default function DashboardOverview() {
 									transition={{ delay: idx * 0.1 }}
 									className="rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300"
 									style={{ 
-										background: 'linear-gradient(135deg, #ffffff 0%, #fefce8 100%)',
 										border: '1px solid rgba(203, 213, 225, 0.3)'
 									}}
 								>
@@ -226,10 +225,10 @@ export default function DashboardOverview() {
 					</div>
 
 					{/* Desktop View */}
-					<div className="hidden md:block overflow-x-auto rounded-xl">
+					<div className="hidden md:block overflow-x-auto ">
 						<table className="w-full text-left">
 							<thead>
-								<tr style={{ background: '#3F0E40'  }} className="text-white">
+								<tr  className=" text-#3F0E40 border border-black-200 bg-white hover:bg-gray-50">
 									<th className="p-4 font-bold uppercase text-xs tracking-wider rounded-tl-lg">Product Name</th>
 									<th className="p-4 font-bold uppercase text-xs tracking-wider">Category</th>
 									<th className="p-4 font-bold uppercase text-xs tracking-wider text-center">Current Stock</th>
@@ -254,7 +253,7 @@ export default function DashboardOverview() {
 											<td className="p-4 font-semibold text-gray-800">{product.name}</td>
 											<td className="p-4 text-gray-600">{product.category}</td>
 											<td className="p-4 text-center">
-												<span className="inline-flex items-center justify-center px-2.5 py-1 rounded-full text-xs font-bold min-w-[80px] shadow-sm" style={{ backgroundColor: '#fee2e2', color: '#991b1b' }}>
+												<span className="inline-flex items-center justify-center px-2.5 py-1 rounded-full text-xs font-bold min-w-[80px] shadow-sm" style={{ backgroundColor: '', color: '#991b1b' }}>
 													{product.stock} units
 												</span>
 											</td>
@@ -262,7 +261,7 @@ export default function DashboardOverview() {
 												<span className="text-base font-bold" style={{ color: '#CA8A04' }}>₦{product.price || 50}</span>
 												</td>
 											<td className="p-4 text-center">
-												<span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium shadow-sm" style={{ backgroundColor: '#fee2e2', color: '#991b1b' }}>
+												<span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium shadow-sm" style={{ backgroundColor: '', color: '#991b1b' }}>
 													⚠️ Critical Stock
 												</span>
 												</td>

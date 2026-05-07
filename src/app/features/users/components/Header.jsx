@@ -16,7 +16,13 @@ function Header({
   ButtonIcon = null,
   onButtonClick = () => {},
   buttonVariant = 'primary',
-  className = ""
+  className = "",
+  customChildren = null, // New prop for custom elements
+  // Custom styling props for Reports page
+  dateBgColor = "bg-black/10",
+  dateBorderColor = "border-black/20",
+  dateTextColor = "text-black",
+  calendarColor = "text-[#3F0E40]"
 }) {
   return (
     <div className={`relative overflow-hidden rounded-xl border sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl ${className}`}>
@@ -55,6 +61,8 @@ function Header({
               {buttonText}
             </Button>
           )}
+
+          {customChildren}
         </div>
       </div>
     </div>

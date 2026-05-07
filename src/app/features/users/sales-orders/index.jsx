@@ -154,7 +154,7 @@ const SalesOrders = () => {
     return (
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 w-full max-w-full">
-                {/* Enhanced Header with Professional Gradient */}
+                
                 <Header 
                     title="Sales Orders"
                     description="Manage and track your customer orders"
